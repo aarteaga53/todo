@@ -10,18 +10,15 @@ const recordRoutes = express.Router()
 const dbo = require('../db/conn')
 
 recordRoutes.route("/tasks").get(async function (req, res) {
-    const dbConnect = dbo.getDb()
-  
-    dbConnect
-      .collection("tasks")
-      .find({}).limit(50)
-      .toArray(function (err, result) {
-        if (err) {
-          res.status(400).send("Error fetching tasks!")
-        } else {
-          res.json(result)
-        }
-    })
+    const dbConnect = await dbo.getDb()
+
+    try {
+      const collection = await dbConnect.collection('tasks')
+      const tasks = await collection.find({}).toArray()
+      res.json(tasks)
+    } catch(err) {
+      res.status(400).send('Error fetching tasks!')
+    }
 })
 
 module.exports = recordRoutes

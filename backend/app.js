@@ -29,24 +29,4 @@ dbo.connectToServer(function (err) {
 	})
 })
 
-// const MongoClient = require('mongodb').MongoClient
-// const url = process.env.ATLAS_URI
-
-// // Connect to the MongoDB database
-// MongoClient.connect(url, (err, client) => {
-//   if (err) {
-//     console.error(err);
-//     return;
-//   }
-
-//   // Connected successfully
-//   console.log('Connected to MongoDB database');
-
-//   // Get a reference to the todos collection
-//   const todos = client.db('todo').collection('todo');
-
-//   // Disconnect from the MongoDB database when the app closes
-//   app.on('close', () => client.close());
-// });
-
 // app.listen(port, () => console.log(`Server is running on: http://localhost:${port}`))

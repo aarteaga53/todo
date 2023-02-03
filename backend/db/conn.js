@@ -1,52 +1,31 @@
-const { MongoClient, ServerApiVersion } = require('mongodb')
-const uri = process.env.ATLAS_URI
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
+const { MongoClient } = require("mongodb");
+// Connection URI
+const uri = process.env.ATLAS_URI;
+// Create a new MongoClient
+const client = new MongoClient(uri);
 
 let dbConnection
 
 module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (err || !db) {
-        return callback(err)
-      }
-
-      dbConnection = db.db("todo")
+  connectToServer: async function (callback) {
+    try {
+      // Connect the client to the server (optional starting in v4.7)
+      const db = await client.connect()
+      // Establish and verify connection
+      dbConnection = await db.db("todo")
       console.log("Successfully connected to MongoDB.")
 
       return callback()
-    })
+    } catch(err) {
+      return callback(err)
+    } 
+    // finally {
+    //   // Ensures that the client will close when you finish/error
+    //   await client.close();
+    // }
   },
 
   getDb: function () {
     return dbConnection
-  },
+  }
 }
-
-// const { MongoClient } = require("mongodb");
-// const connectionString = process.env.ATLAS_URI;
-// const client = new MongoClient(connectionString, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// let dbConnection;
-
-// module.exports = {
-//   connectToServer: function (callback) {
-//     client.connect(function (err, db) {
-//       if (err || !db) {
-//         return callback(err);
-//       }
-
-//       dbConnection = db.db("todo");
-//       console.log("Successfully connected to MongoDB.");
-
-//       return callback();
-//     });
-//   },
-
-//   getDb: function () {
-//     return dbConnection;
-//   },
-// };
