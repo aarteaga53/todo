@@ -19,8 +19,8 @@ app.get('/hello', (req, res) => {
 // perform a database connection when the server starts
 dbo.connectToServer(function (err) {
 	if (err) {
-	  console.error(err);
-	  process.exit();
+	  console.error(err)
+	  process.exit()
 	}
   
 	// start the Express server

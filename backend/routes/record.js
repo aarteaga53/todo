@@ -32,6 +32,20 @@ recordRoutes.route("/tasks").get(async (req, res) => {
     }
 })
 
+// read all tasks of specified type
+recordRoutes.route("/tasks/:type").get(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const type = { type: parseInt(req.params.type)}
+
+  try {
+    const collection = dbConnect.collection('tasks')
+    const tasks = await collection.find(type).toArray()
+    res.json(tasks)
+  } catch(err) {
+    res.status(400).send('Error fetching tasks!')
+  }
+})
+
 // insert a task
 recordRoutes.route("/tasks/insert").post(async (req, res) => {
   const dbConnect = dbo.getDb()
