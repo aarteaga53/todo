@@ -16,6 +16,7 @@ const dbo = require('../db/conn')
  *  title: String,
  *  body: String,
  *  type: Number, [todo-0, inProgress-1, done-2]
+ *  date: new Date()
  * }
  */
 
@@ -70,11 +71,32 @@ recordRoutes.route("/tasks/insert").post(async (req, res) => {
 recordRoutes.route("/tasks/delete/:id").delete(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
-  const task = { _id: new ObjectId(req.params.id) }
+  const taskId = { _id: new ObjectId(req.params.id) }
 
-  const result = await collection.deleteOne(task)
+  const result = await collection.deleteOne(taskId)
 
   if(result.deletedCount === 1) {
+    res.json({ msg: 'success' })
+  } else {
+    res.json({ msg: 'error' })
+  }
+})
+
+// update contents of a task
+recordRoutes.route("/tasks/update").post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const updateTask = {
+    title: req.body.title,
+    body: req.body.body,
+    type: parseInt(req.body.type),
+    date: new Date(req.body.date)
+  }
+  const taskId = { _id: new ObjectId(req.body._id) }
+
+  const result = await collection.updateOne(taskId, { $set: updateTask })
+
+  if(result.matchedCount !== 0) {
     res.json({ msg: 'success' })
   } else {
     res.json({ msg: 'error' })
