@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -26,6 +29,32 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.task {
+  border: 2px solid black;
+  border-radius: 4px;
+  width: 20%;
+  padding: 25px;
+  margin-bottom: 15px;
+  text-align: start;
+}
+
+.task-header {
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.task-title {
+  font-size: 24px;
+}
+
+.task-date {
+  margin-right: 0;
+  margin-left: auto;
 }
 
 @keyframes App-logo-spin {

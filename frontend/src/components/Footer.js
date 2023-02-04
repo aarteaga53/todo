@@ -11,7 +11,7 @@ function Footer() {
         <LinkedInIcon/>
         <GitHubIcon/>
       </div>
-      <p>&copy; 2023 issueTracker</p>
+      <p>&copy; {new Date().getFullYear()} issueTracker</p>
     </div>
   )
 }
