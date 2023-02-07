@@ -18,3 +18,15 @@
     font-size: 32px;
     margin-bottom: 25px;
 }
+
+.auth-inputs {
+    margin-bottom: 15px;
+}
+
+.auth-buttons {
+    margin-top: 25px;
+}
+
+.auth-buttons Button:first-of-type {
+    margin-right: 10px;
+}

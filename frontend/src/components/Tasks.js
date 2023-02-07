@@ -20,7 +20,7 @@ const Tasks = ({title, tasks}) => {
 
   return (
     <div className='tri'>
-      <h2>{title}</h2>
+      <div className='type-title'>{title}</div>
       {tasks.map((task, index) => (
         <div className='task' key={index}>
           <div className='task-header'>

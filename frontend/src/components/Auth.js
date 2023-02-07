@@ -87,22 +87,30 @@ const Auth = () => {
             <div className='auth-box'>
                 <div className='auth-title'>{isSignup ? 'Signup' : 'Login'}</div>
                 {isSignup ? <div>
-                    <InputLabel>First Name</InputLabel>
-                    <TextField id='first' type='text' onChange={handleChange} required />
-                    <InputLabel>Last Name</InputLabel>
-                    <TextField id='last' type='text' onChange={handleChange} required />
+                    <div className='auth-inputs'>
+                        <InputLabel>First Name</InputLabel>
+                        <TextField id='first' type='text' onChange={handleChange} required />
+                    </div>
+                    <div className='auth-inputs'>
+                        <InputLabel>Last Name</InputLabel>
+                        <TextField id='last' type='text' onChange={handleChange} required />
+                    </div>
                 </div> : null}
-                    <InputLabel>Email</InputLabel>
-                    <TextField id='email' type='text' onChange={handleChange} required />
-                    <InputLabel>Password</InputLabel>
-                    <TextField id='password' type='password' onChange={handleChange} required />
+                    <div className='auth-inputs'>
+                        <InputLabel>Email</InputLabel>
+                        <TextField id='email' type='text' onChange={handleChange} required />
+                    </div>
+                    <div className='auth-inputs'>
+                        <InputLabel>Password</InputLabel>
+                        <TextField id='password' type='password' onChange={handleChange} required />
+                    </div>
                 <div className='auth-buttons'>
                     {isSignup ? <div>
-                        <Button onClick={toggleAuth}>Login</Button>
-                        <Button onClick={signup}>Signup</Button>
+                        <Button variant='outlined' onClick={toggleAuth}>Login</Button>
+                        <Button variant='outlined' onClick={signup}>Signup</Button>
                     </div> : <div>
-                        <Button onClick={toggleAuth}>Signup</Button>
-                        <Button onClick={login}>Login</Button>
+                        <Button variant='outlined' onClick={toggleAuth}>Signup</Button>
+                        <Button variant='outlined' onClick={login}>Login</Button>
                     </div>}
                 </div>
             </div>

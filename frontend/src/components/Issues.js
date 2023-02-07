@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Issues.css'
+import { IconButton } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 import Footer from './Footer'
 import Tasks from './Tasks'
+import { Link, Route, Routes } from 'react-router-dom'
+import CreateTask from './CreateTask'
 
 const Issues = () => {
   let [todo, setTodo] = useState([])
@@ -43,7 +47,13 @@ const Issues = () => {
         <Tasks title='In Progress' tasks={progress} />
         <Tasks title='Done' tasks={done} />
       </div>
+      <Link to='create'>
+        <IconButton>{<AddIcon />}</IconButton>
+      </Link>
       <Footer />
+      <Routes>
+        <Route path='create' element={<CreateTask type0={todo} type1={progress} type2={done} set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
+      </Routes>
     </div>
 
   )

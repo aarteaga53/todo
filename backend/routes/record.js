@@ -55,7 +55,7 @@ recordRoutes.route("/tasks/insert").post(async (req, res) => {
     title: req.body.title,
     body: req.body.body,
     type: parseInt(req.body.type),
-    date: new Date(),
+    date: new Date(req.body.date),
   }
 
   const result = await collection.insertOne(insertTask)
