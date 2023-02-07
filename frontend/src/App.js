@@ -1,8 +1,9 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import Auth from './components/Auth';
 
 function App() {
   let [tasks, setTasks] = useState([])
@@ -53,6 +54,9 @@ function App() {
           </div>
         ))}
         <Footer/>
+        <Routes>
+          <Route path='/auth' element={<Auth />}></Route>
+        </Routes>
       </Router>
       
     </div>

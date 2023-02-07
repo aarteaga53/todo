@@ -16,14 +16,14 @@ function Navbar() {
     <div className='navbar'>
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
             <div className='hiddenLinks'>
-            <Link to='/'>Home</Link>
+            <Link to='home'>Home</Link>
             <Link to='profile'>Profile</Link>
             <Link to='tracker'>Issue Tracker</Link>
             <Link to='contact'>Contact</Link>
             </div>
         </div>
         <div className='rightSide'>
-            <Link to='/'>Home</Link>
+            <Link to='home'>Home</Link>
             <Link to='profile'>Profile</Link>
             <Link to='tracker'>IssueTracker</Link>
             <Link to='contact'>Contact</Link>
