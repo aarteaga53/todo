@@ -9,11 +9,11 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
-          <Route path='/main' element={<Main />}></Route>
+          <Route path='/main' element={<Navigate to='/main/home'></Navigate>}></Route>
+          <Route path='/main/*' element={<Main />}></Route>
           <Route path='/auth' element={<Auth />}></Route>
         </Routes>
       </Router>
-      
     </div>
   );
 }
