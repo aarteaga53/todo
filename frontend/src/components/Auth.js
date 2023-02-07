@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, InputLabel, TextField } from '@mui/material'
 import '../styles/Auth.css'
+import Footer from './Footer'
 
 
 const Auth = () => {
@@ -15,7 +16,7 @@ const Auth = () => {
     let login = async () => {
         const user = {email: email, password: password}
         console.log(user)
-        navigate('/home')
+        navigate('/main')
         // if(email !== '' && password !== '') {
         //     const newUser = {email: email, password: password}
 
@@ -30,7 +31,7 @@ const Auth = () => {
         //     let data = await response.json()
     
         //     if(data.msg === 'User valid.') {
-        //         navigate('/home')
+        //         navigate('/main')
         //     }
         // }
     }
@@ -105,6 +106,7 @@ const Auth = () => {
                     </div>}
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
