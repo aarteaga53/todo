@@ -43,9 +43,9 @@ const Issues = () => {
   return (
     <div className='page-body'>
       <div className='layout'>
-        <Tasks title='Todo' tasks={todo} />
-        <Tasks title='In Progress' tasks={progress} />
-        <Tasks title='Done' tasks={done} />
+        <Tasks title='Todo' tasks={todo} setTasks={setTodo} />
+        <Tasks title='In Progress' tasks={progress} setTasks={setProgress} />
+        <Tasks title='Done' tasks={done} setTasks={setDone} />
       </div>
       <Link to='create'>
         <IconButton>{<AddIcon />}</IconButton>

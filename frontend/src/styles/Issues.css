@@ -83,3 +83,7 @@
 .create-buttons Button:first-of-type {
     margin-right: 15px;
 }
+
+.icon {
+    top: 10px;
+}

@@ -5,7 +5,7 @@ import { Button, Input, InputLabel, FormControl, FormControlLabel, FormLabel, Ra
 const CreateTask = ({type0, type1, type2, set0, set1, set2}) => {
   let [title, setTitle] = useState('')
   let [body, setBody] = useState('')
-  let [type, setType] = useState(0)
+  let [type, setType] = useState('0')
   let navigate = useNavigate()
 
   let createTask = async () => {
