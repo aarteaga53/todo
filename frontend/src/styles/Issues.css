@@ -1,0 +1,84 @@
+.layout {
+    width: 100%;
+    display: flex;
+    margin: 25px 0;
+}
+
+.tri {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.tri:nth-child(2) {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.type-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.task {
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 50%;
+    padding: 25px;
+    margin-bottom: 15px;
+    text-align: start;
+}
+
+.task:last-of-type {
+    margin-bottom: 0;
+}
+
+.task-header {
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.task-title {
+    font-size: 24px;
+}
+
+.task-date {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.create-page {
+    position: absolute;
+    height: 77%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px) contrast(80%);
+}
+
+.create-box {
+    border-radius: 4px;
+    background-color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-input {
+    margin-bottom: 25px;
+}
+
+.create-buttons {
+    margin-top: 25px;
+}
+
+.create-buttons Button:first-of-type {
+    margin-right: 15px;
+}

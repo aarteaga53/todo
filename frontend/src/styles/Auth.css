@@ -1,0 +1,32 @@
+.auth-body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box {
+    border: 2px solid #191970;
+    border-radius: 4px;
+    padding: 50px 75px;
+    margin-bottom: 50px;
+}
+
+.auth-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.auth-inputs {
+    margin-bottom: 15px;
+}
+
+.auth-buttons {
+    margin-top: 25px;
+}
+
+.auth-buttons Button:first-of-type {
+    margin-right: 10px;
+}
