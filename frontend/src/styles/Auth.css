@@ -27,6 +27,10 @@
     margin-top: 25px;
 }
 
-.auth-buttons Button:first-of-type {
+.auth-buttons Button {
     margin-right: 10px;
+}
+
+.auth-buttons Button:last-of-type {
+    margin-right: 0;
 }

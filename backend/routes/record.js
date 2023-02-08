@@ -103,4 +103,47 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
   }
 })
 
+// verify user exists
+recordRoutes.route("/verify").post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const cred = {
+    email: req.body.email,
+    password: req.body.password
+  }
+
+  try {
+    const user = await collection.findOne(cred)
+
+    if(user !== null) {
+      res.json(user)
+    } else {
+      res.json({msg: 'error'})
+    }
+  } catch(err) {
+    res.json({msg: 'error'})
+  }
+})
+
+// register a new user
+recordRoutes.route("/register").post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const newUser = {
+    first: req.body.first,
+    last: req.body.last,
+    email: req.body.email,
+    password: req.body.password,
+    tasks: {1: 'task1'}
+  }
+
+  const result = await collection.insertOne(newUser)
+  
+  if(result.insertedId !== null) {
+    res.json(result)
+  } else {
+    res.json({err: 'error'})
+  }
+})
+
 module.exports = recordRoutes

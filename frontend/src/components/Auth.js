@@ -14,49 +14,43 @@ const Auth = () => {
     let navigate = useNavigate()
 
     let login = async () => {
-        const user = {email: email, password: password}
-        console.log(user)
-        navigate('/main')
-        // if(email !== '' && password !== '') {
-        //     const newUser = {email: email, password: password}
+        if(email !== '' && password !== '') {
+            const user = {email: email, password: password}
 
-        //     let response = await fetch(`http://127.0.0.1:8000/verify`, {
-        //         method: "POST",
-        //         headers: {
-        //             'Content-type': 'application/json'
-        //         },
-        //         body: JSON.stringify(newUser)
-        //     })
+            let response = await fetch(`http://127.0.0.1:8000/verify`, {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
 
-        //     let data = await response.json()
+            let data = await response.json()
     
-        //     if(data.msg === 'User valid.') {
-        //         navigate('/main')
-        //     }
-        // }
+            if(data.msg !== 'error') {
+                navigate('/main')
+            }
+        }
     }
     
     let signup = async () => {
-        const newUser = {first: first, last: last, email: email, password: password}
-        console.log(newUser)
-        setIsSignup(false)
-        // if(email !== '' && password !== '' && first !== '' && last !== '') {
-        //     const newUser = {first: first, last: last, email: email, password: password}
+        if(email !== '' && password !== '' && first !== '' && last !== '') {
+            const newUser = {first: first, last: last, email: email, password: password}
 
-        //     let response = await fetch(`http://127.0.0.1:8000/register`, {
-        //         method: "POST",
-        //         headers: {
-        //             'Content-type': 'application/json'
-        //         },
-        //         body: JSON.stringify(newUser)
-        //     })
+            let response = await fetch(`http://127.0.0.1:8000/register`, {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
 
-        //     let data = await response.json()
+            let data = await response.json()
 
-        //     if(data.msg === 'User created.') {
-        //         setIsSignup(false)
-        //     }
-        // }
+            if('insertedId' in data) {
+                setIsSignup(false)
+            }
+        }
     }
 
     let toggleAuth = () => {
@@ -111,6 +105,7 @@ const Auth = () => {
                     </div> : <div>
                         <Button variant='outlined' onClick={toggleAuth}>Signup</Button>
                         <Button variant='outlined' onClick={login}>Login</Button>
+                        <Button variant='outlined' onClick={() => navigate('/main')}>Skip</Button>
                     </div>}
                 </div>
             </div>
