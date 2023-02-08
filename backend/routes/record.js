@@ -1,6 +1,8 @@
 require('dotenv').config({ path: '../config.env' })
 
 const express = require("express")
+const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken")
 const ObjectId = require('mongodb').ObjectId
 
 // recordRoutes is an instance of the express router.
@@ -107,21 +109,29 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
 recordRoutes.route("/verify").post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
-  const cred = {
-    email: req.body.email,
-    password: req.body.password
-  }
+  const cred = { email: req.body.email }
 
   try {
     const user = await collection.findOne(cred)
-
+    
     if(user !== null) {
-      res.json(user)
+      const isMatch = await bcrypt.compare(req.body.password, user.password)
+
+      if(!isMatch) {
+        res.json({ msg: 'error' })
+        return
+      }
+
+      const token = jwt.sign(user, process.env.JWT_SECRET)
+      // const verify = jwt.verify(token, process.env.JWT_SECRET)
+      // console.log(verify)
+
+      res.json(token)
     } else {
-      res.json({msg: 'error'})
+      res.json({ msg: 'error' })
     }
   } catch(err) {
-    res.json({msg: 'error'})
+    res.json({ msg: 'error' })
   }
 })
 
@@ -133,17 +143,25 @@ recordRoutes.route("/register").post(async (req, res) => {
     first: req.body.first,
     last: req.body.last,
     email: req.body.email,
-    password: req.body.password,
-    tasks: {1: 'task1'}
+    password: req.body.password
   }
 
-  const result = await collection.insertOne(newUser)
-  
-  if(result.insertedId !== null) {
-    res.json(result)
-  } else {
-    res.json({err: 'error'})
+  try {
+    const salt = await bcrypt.genSalt()
+    const passwordHash = await bcrypt.hash(newUser.password, salt)
+    
+    newUser.password = passwordHash
+    const result = await collection.insertOne(newUser)
+    
+    if(result.insertedId !== null) {
+      res.json(result)
+    } else {
+      res.json({ err: 'error' })
+    }
+  } catch(err) {
+    res.json({ err: 'error' })
   }
+
 })
 
 module.exports = recordRoutes
