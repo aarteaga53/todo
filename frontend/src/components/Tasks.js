@@ -35,16 +35,18 @@ const Tasks = ({title, tasks, setTasks}) => {
   return (
     <div className='tri'>
       <div className='type-title'>{title}</div>
-      {tasks.map((task, index) => (
-        <div className='task' key={index}>
-          <div className='task-header'>
-            <div className='task-title'>{task.title}</div>
-            <div className='task-date'>{formatDate(new Date(task.date))}</div>
-            <IconButton className='icon' onClick={() => deleteTask(index)}>{<DeleteIcon />}</IconButton>
+      <div className='task-box'>
+        {tasks.map((task, index) => (
+          <div className='task' key={index}>
+            <div className='task-header'>
+              <div className='task-title'>{task.title}</div>
+              <div className='task-date'>{formatDate(new Date(task.date))}</div>
+              <IconButton className='icon' onClick={() => deleteTask(index)}>{<DeleteIcon />}</IconButton>
+            </div>
+            <div className='task-body'>{task.body}</div>
           </div>
-          <div className='task-body'>{task.body}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
