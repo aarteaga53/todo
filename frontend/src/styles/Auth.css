@@ -20,11 +20,12 @@
 }
 
 .auth-inputs {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .auth-buttons {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .auth-buttons Button {

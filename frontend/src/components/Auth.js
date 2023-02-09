@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, InputLabel, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import '../styles/Auth.css'
 import Footer from './Footer'
 
@@ -13,10 +13,13 @@ const Auth = () => {
     let [isSignup, setIsSignup] = useState(false)
     let navigate = useNavigate()
 
+    /**
+     * allows the user to login
+     */
     let login = async () => {
         if(email !== '' && password !== '') {
             const user = {email: email, password: password}
-
+            
             let response = await fetch(`http://127.0.0.1:8000/verify`, {
                 method: "POST",
                 headers: {
@@ -33,6 +36,9 @@ const Auth = () => {
         }
     }
     
+    /**
+     * allows the user to register
+     */
     let signup = async () => {
         if(email !== '' && password !== '' && first !== '' && last !== '') {
             const newUser = {first: first, last: last, email: email, password: password}
@@ -53,6 +59,9 @@ const Auth = () => {
         }
     }
 
+    /**
+     * changes between login and signup inputs
+     */
     let toggleAuth = () => {
         setIsSignup(!isSignup)
     }
@@ -80,33 +89,18 @@ const Auth = () => {
         <div className='auth-body'>
             <div className='auth-box'>
                 <div className='auth-title'>{isSignup ? 'Signup' : 'Login'}</div>
-                {isSignup ? <div>
-                    <div className='auth-inputs'>
-                        <InputLabel>First Name</InputLabel>
-                        <TextField id='first' type='text' onChange={handleChange} required />
-                    </div>
-                    <div className='auth-inputs'>
-                        <InputLabel>Last Name</InputLabel>
-                        <TextField id='last' type='text' onChange={handleChange} required />
-                    </div>
-                </div> : null}
-                    <div className='auth-inputs'>
-                        <InputLabel>Email</InputLabel>
-                        <TextField id='email' type='text' onChange={handleChange} required />
-                    </div>
-                    <div className='auth-inputs'>
-                        <InputLabel>Password</InputLabel>
-                        <TextField id='password' type='password' onChange={handleChange} required />
-                    </div>
+                <div className='auth-inputs'>
+                    {isSignup ? <>
+                        <TextField id='first' label='First Name' type='text' margin='normal' onChange={handleChange} />
+                        <TextField id='last' label='Last Name' type='text' margin='normal' onChange={handleChange} />
+                    </> : null}
+                    <TextField id='email' label='Email' type='text' margin='normal' onChange={handleChange} />
+                    <TextField id='password' label='Password' type='password' margin='normal' onChange={handleChange} />
+                </div>
                 <div className='auth-buttons'>
-                    {isSignup ? <div>
-                        <Button variant='outlined' onClick={toggleAuth}>Login</Button>
-                        <Button variant='outlined' onClick={signup}>Signup</Button>
-                    </div> : <div>
-                        <Button variant='outlined' onClick={toggleAuth}>Signup</Button>
-                        <Button variant='outlined' onClick={login}>Login</Button>
-                        <Button variant='outlined' onClick={() => navigate('/main')}>Skip</Button>
-                    </div>}
+                    <Button variant='outlined' onClick={toggleAuth}>{isSignup ? 'Login' : 'Signup'}</Button>
+                    <Button variant='outlined' onClick={isSignup ? signup : login}>{isSignup ? 'Signup' : 'Login'}</Button>
+                    <Button variant='outlined' onClick={() => navigate('/main')}>Skip</Button>
                 </div>
             </div>
             <Footer />
