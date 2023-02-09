@@ -1,9 +1,11 @@
 .navbar {
+    position: fixed;
     width: 100%;
     height: 100px;
     background-color: 	#191970;
     display: flex;
     flex-direction: row;
+    z-index: 1;
 }
 
 .navbar .leftSide {

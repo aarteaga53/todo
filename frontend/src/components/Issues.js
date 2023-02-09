@@ -55,7 +55,6 @@ const Issues = () => {
         <Route path='create' element={<CreateTask type0={todo} type1={progress} type2={done} set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
       </Routes>
     </div>
-
   )
 }
 
