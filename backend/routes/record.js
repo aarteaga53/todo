@@ -94,8 +94,8 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
     type: parseInt(req.body.type),
     date: new Date(req.body.date)
   }
+  
   const taskId = { _id: new ObjectId(req.body._id) }
-
   const result = await collection.updateOne(taskId, { $set: updateTask })
 
   if(result.matchedCount !== 0) {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link, Route, Routes } from 'react-router-dom'
 import '../styles/Issues.css'
-import { IconButton } from '@mui/material'
+import { Fab } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import Footer from './Footer'
 import Tasks from './Tasks'
-import { Link, Route, Routes } from 'react-router-dom'
 import CreateTask from './CreateTask'
 
 const Issues = () => {
@@ -41,20 +41,26 @@ const Issues = () => {
   }, [])
 
   return (
-    <div className='page-body'>
-      <div className='layout'>
-        <Tasks title='Todo' tasks={todo} setTasks={setTodo} />
-        <Tasks title='In Progress' tasks={progress} setTasks={setProgress} />
-        <Tasks title='Done' tasks={done} setTasks={setDone} />
+    <>
+      <div className='page-body'>
+        <div className='layout'>
+          <Tasks title='Todo' tasks={todo} setTasks={setTodo} />
+          <Tasks title='In Progress' tasks={progress} setTasks={setProgress} />
+          <Tasks title='Done' tasks={done} setTasks={setDone} />
+        </div>
+        <Footer />
+        <Routes>
+          <Route path='create' element={<CreateTask type0={todo} type1={progress} type2={done} set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
+        </Routes>
       </div>
-      <Link to='create'>
-        <IconButton>{<AddIcon />}</IconButton>
-      </Link>
-      <Footer />
-      <Routes>
-        <Route path='create' element={<CreateTask type0={todo} type1={progress} type2={done} set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
-      </Routes>
-    </div>
+      <div className='add-icon'>
+        <Link to='create'>
+          <Fab color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </Link>
+      </div>
+    </>
   )
 }
 

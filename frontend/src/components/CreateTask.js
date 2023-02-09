@@ -61,6 +61,7 @@ const CreateTask = ({type0, type1, type2, set0, set1, set2}) => {
   return (
     <div className='create-page'>
       <div className='create-box'>
+        <div className='auth-title'>Create Task</div>
         <TextField id="title" label="Title" variant="outlined" margin="normal" onChange={handleChange} />
         <TextField id="body" label="Body" variant="outlined" margin="normal" multiline onChange={handleChange} />
         <FormControl>
