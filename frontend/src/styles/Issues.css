@@ -30,6 +30,20 @@
     padding: 10px;
     border-radius: 4px;
     background-color: #e1e1e1;
+    transition-duration: 0.5s;
+}
+
+.task-drag {
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.task-drag:last-of-type {
+    margin-bottom: 0;
+}
+
+.task-drag:hover {
+    cursor: pointer;
 }
 
 .task {
@@ -95,6 +109,7 @@
     right: 50px;
 }
 
-.icon {
+.delete-icon {
     top: 10px;
+    z-index: 0;
 }

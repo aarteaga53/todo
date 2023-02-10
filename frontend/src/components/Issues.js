@@ -6,6 +6,10 @@ import AddIcon from '@mui/icons-material/Add'
 import Footer from './Footer'
 import Tasks from './Tasks'
 import CreateTask from './CreateTask'
+import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core'
+import {
+  restrictToWindowEdges,
+} from '@dnd-kit/modifiers'
 
 const Issues = () => {
   let [todo, setTodo] = useState([])
@@ -40,13 +44,22 @@ const Issues = () => {
     getTasks(2)
   }, [])
 
+  const mouseSensor = useSensor(MouseSensor, {
+    // Require the mouse to move by 10 pixels before activating
+    activationConstraint: {
+      distance: 1,
+    },
+  })
+
   return (
     <>
       <div className='page-body'>
         <div className='layout'>
-          <Tasks title='Todo' tasks={todo} setTasks={setTodo} />
-          <Tasks title='In Progress' tasks={progress} setTasks={setProgress} />
-          <Tasks title='Done' tasks={done} setTasks={setDone} />
+          <DndContext sensors={useSensors(mouseSensor)} modifiers={[restrictToWindowEdges]}>
+            <Tasks title='Todo' tasks={todo} setTasks={setTodo} id={0} />
+            <Tasks title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
+            <Tasks title='Done' tasks={done} setTasks={setDone} id={2} />
+          </DndContext>
         </div>
         <Footer />
         <Routes>
