@@ -1,6 +1,8 @@
 require('dotenv').config({ path: '../config.env' })
 
 const express = require("express")
+const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken")
 const ObjectId = require('mongodb').ObjectId
 
 // recordRoutes is an instance of the express router.
@@ -92,8 +94,8 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
     type: parseInt(req.body.type),
     date: new Date(req.body.date)
   }
+  
   const taskId = { _id: new ObjectId(req.body._id) }
-
   const result = await collection.updateOne(taskId, { $set: updateTask })
 
   if(result.matchedCount !== 0) {
@@ -101,6 +103,65 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
   } else {
     res.json({ msg: 'error' })
   }
+})
+
+// verify user exists
+recordRoutes.route("/verify").post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const cred = { email: req.body.email }
+
+  try {
+    const user = await collection.findOne(cred)
+    
+    if(user !== null) {
+      const isMatch = await bcrypt.compare(req.body.password, user.password)
+
+      if(!isMatch) {
+        res.json({ msg: 'error' })
+        return
+      }
+
+      const token = jwt.sign(user, process.env.JWT_SECRET)
+      // const verify = jwt.verify(token, process.env.JWT_SECRET)
+      // console.log(verify)
+
+      res.json(token)
+    } else {
+      res.json({ msg: 'error' })
+    }
+  } catch(err) {
+    res.json({ msg: 'error' })
+  }
+})
+
+// register a new user
+recordRoutes.route("/register").post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const newUser = {
+    first: req.body.first,
+    last: req.body.last,
+    email: req.body.email,
+    password: req.body.password
+  }
+
+  try {
+    const salt = await bcrypt.genSalt()
+    const passwordHash = await bcrypt.hash(newUser.password, salt)
+    
+    newUser.password = passwordHash
+    const result = await collection.insertOne(newUser)
+    
+    if(result.insertedId !== null) {
+      res.json(result)
+    } else {
+      res.json({ err: 'error' })
+    }
+  } catch(err) {
+    res.json({ err: 'error' })
+  }
+
 })
 
 module.exports = recordRoutes

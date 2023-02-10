@@ -12,6 +12,7 @@
     border-radius: 4px;
     padding: 50px 75px;
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .auth-title {
@@ -20,13 +21,18 @@
 }
 
 .auth-inputs {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .auth-buttons {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
-.auth-buttons Button:first-of-type {
+.auth-buttons Button {
     margin-right: 10px;
+}
+
+.auth-buttons Button:last-of-type {
+    margin-right: 0;
 }

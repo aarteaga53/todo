@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Input, InputLabel, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material'
 
 const CreateTask = ({type0, type1, type2, set0, set1, set2}) => {
   let [title, setTitle] = useState('')
   let [body, setBody] = useState('')
-  let [type, setType] = useState(0)
+  let [type, setType] = useState('0')
   let navigate = useNavigate()
 
   let createTask = async () => {
@@ -61,14 +61,9 @@ const CreateTask = ({type0, type1, type2, set0, set1, set2}) => {
   return (
     <div className='create-page'>
       <div className='create-box'>
-        <FormControl>
-          <InputLabel htmlFor='title'>Title</InputLabel>
-          <Input className='create-input' id='title' type='text' onChange={handleChange} required />
-        </FormControl>
-        <FormControl>
-          <InputLabel htmlFor='body'>Body</InputLabel>
-          <Input className='create-input' id='body' type='text' onChange={handleChange} required />
-        </FormControl>
+        <div className='auth-title'>Create Task</div>
+        <TextField id="title" label="Title" variant="outlined" margin="normal" onChange={handleChange} />
+        <TextField id="body" label="Body" variant="outlined" margin="normal" multiline onChange={handleChange} />
         <FormControl>
           <FormLabel id='type'>Type</FormLabel>
           <RadioGroup
