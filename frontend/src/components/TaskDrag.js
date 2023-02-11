@@ -4,9 +4,13 @@ import { CSS } from '@dnd-kit/utilities'
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-const TaskDrag = ({index, tasks, setTasks, task}) => {
+const TaskDrag = ({index, setTasks, task}) => {
   const {isDragging, attributes, listeners, setNodeRef, transform} = useDraggable({
     id: task.date,
+    data: {
+      index: index,
+      type: task.type
+    }
   })
 
   const style = {

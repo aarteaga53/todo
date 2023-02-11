@@ -95,14 +95,20 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
     date: new Date(req.body.date)
   }
   
-  const taskId = { _id: new ObjectId(req.body._id) }
-  const result = await collection.updateOne(taskId, { $set: updateTask })
-
-  if(result.matchedCount !== 0) {
-    res.json({ msg: 'success' })
-  } else {
+  try {
+    const taskId = { _id: new ObjectId(req.body._id) }
+    const result = await collection.updateOne(taskId, { $set: updateTask })
+  
+    if(result.matchedCount !== 0) {
+      res.json({ msg: 'success' })
+    } else {
+      res.json({ msg: 'error' })
+    }
+  } catch(err) {
+    console.log(err)
     res.json({ msg: 'error' })
   }
+
 })
 
 // verify user exists

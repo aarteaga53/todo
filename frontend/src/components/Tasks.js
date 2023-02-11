@@ -1,11 +1,24 @@
 import React from 'react'
-import TaskDrop from './TaskDrop'
+import {useDroppable} from '@dnd-kit/core'
+import TaskDrag from './TaskDrag'
 
 const Tasks = ({title, tasks, setTasks, id}) => {
+  const {isOver, setNodeRef} = useDroppable({
+    id: id,
+  })
+
+  const style = {
+    border: isOver ? '2px solid black' : '2px solid #e1e1e1',
+  }
+
   return (
     <div className='tri'>
       <div className='type-title'>{title}</div>
-      <TaskDrop id={id} tasks={tasks} setTasks={setTasks}/>
+      <div className='task-box' ref={setNodeRef} style={style}>
+        {tasks.map((task, index) => (
+          <TaskDrag index={index} setTasks={setTasks} task={task} key={index} />
+        ))}
+      </div>
     </div>
   )
 }
