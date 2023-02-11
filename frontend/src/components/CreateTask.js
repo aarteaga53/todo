@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material'
 
-const CreateTask = ({type0, type1, type2, set0, set1, set2}) => {
+const CreateTask = ({set0, set1, set2}) => {
   let [title, setTitle] = useState('')
   let [body, setBody] = useState('')
   let [type, setType] = useState('0')
