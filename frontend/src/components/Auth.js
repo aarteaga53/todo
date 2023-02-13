@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
 import '../styles/Auth.css'
 import Footer from './Footer'
 
 
-const Auth = () => {
+const Auth = ({setToken}) => {
     let [first, setFirst] = useState('')
     let [last, setLast] = useState('')
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [isSignup, setIsSignup] = useState(false)
     let navigate = useNavigate()
+
+    useEffect(() => {
+        let removeToken = () => {
+            window.localStorage.removeItem('token')
+            setToken(null)
+        }
+
+        removeToken()
+    }, [setToken])
 
     /**
      * allows the user to login
@@ -31,7 +40,7 @@ const Auth = () => {
             let data = await response.json()
     
             if(data.msg !== 'error') {
-                navigate('/main')
+                navigateHome(data)
             }
         }
     }
@@ -57,6 +66,12 @@ const Auth = () => {
                 setIsSignup(false)
             }
         }
+    }
+
+    let navigateHome = (data) => {
+        window.localStorage.setItem('token', JSON.stringify(data))
+        setToken(data)
+        navigate('/home')
     }
 
     /**
@@ -100,7 +115,7 @@ const Auth = () => {
                 <div className='auth-buttons'>
                     <Button variant='outlined' onClick={toggleAuth}>{isSignup ? 'Login' : 'Signup'}</Button>
                     <Button variant='outlined' onClick={isSignup ? signup : login}>{isSignup ? 'Signup' : 'Login'}</Button>
-                    <Button variant='outlined' onClick={() => navigate('/main')}>Skip</Button>
+                    <Button variant='outlined' onClick={() => navigateHome('test')}>Skip</Button>
                 </div>
             </div>
             <Footer />
