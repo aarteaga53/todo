@@ -167,7 +167,19 @@ recordRoutes.route("/register").post(async (req, res) => {
   } catch(err) {
     res.json({ err: 'error' })
   }
+})
 
+recordRoutes.route('/user').post(async (req, res) => {
+  const token = req.body.token.replace(/"/g, '')
+
+  try {
+    const verify = jwt.verify(token, process.env.JWT_SECRET)
+
+    res.json(verify)
+  } catch(err) {
+    console.log(err)
+    res.json({ msg: 'error' })
+  }
 })
 
 module.exports = recordRoutes

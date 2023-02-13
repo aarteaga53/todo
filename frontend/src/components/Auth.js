@@ -5,7 +5,7 @@ import '../styles/Auth.css'
 import Footer from './Footer'
 
 
-const Auth = ({setToken}) => {
+const Auth = ({setToken, setUser}) => {
     let [first, setFirst] = useState('')
     let [last, setLast] = useState('')
     let [email, setEmail] = useState('')
@@ -17,10 +17,11 @@ const Auth = ({setToken}) => {
         let removeToken = () => {
             window.localStorage.removeItem('token')
             setToken(null)
+            setUser({})
         }
 
         removeToken()
-    }, [setToken])
+    }, [setToken, setUser])
 
     /**
      * allows the user to login
@@ -74,6 +75,12 @@ const Auth = ({setToken}) => {
         navigate('/home')
     }
 
+    let skip = async () => {
+        setEmail('user@email.com')
+        setPassword('password123')
+        login()
+    }
+
     /**
      * changes between login and signup inputs
      */
@@ -115,7 +122,7 @@ const Auth = ({setToken}) => {
                 <div className='auth-buttons'>
                     <Button variant='outlined' onClick={toggleAuth}>{isSignup ? 'Login' : 'Signup'}</Button>
                     <Button variant='outlined' onClick={isSignup ? signup : login}>{isSignup ? 'Signup' : 'Login'}</Button>
-                    <Button variant='outlined' onClick={() => navigateHome('test')}>Skip</Button>
+                    <Button variant='outlined' onClick={skip}>Skip</Button>
                 </div>
             </div>
             <Footer />

@@ -8,6 +8,7 @@ import Issues from './components/Issues';
 
 function App() {
   let [token, setToken] = useState(null)
+  let [user, setUser] = useState({})
 
   useEffect(() => {
     /**
@@ -18,11 +19,27 @@ function App() {
   
       if(data !== null) {
         setToken(JSON.parse(data))
+        getUser(data)
       }
     }
 
+    let getUser = async (temp) => {
+      let response = await fetch(`http://127.0.0.1:8000/user`, {
+          method: "POST",
+          headers: {
+              'Content-type': 'application/json'
+          },
+          body: JSON.stringify({ token: temp })
+      })
+  
+      let data = await response.json()
+      setUser(data)
+    }
+
     getToken()
-  }, [])
+  }, [token])
+
+  
 
   return (
     <div>
@@ -30,8 +47,8 @@ function App() {
         {token ? <Navbar /> : null}
         <Routes>
           <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
-          <Route path='auth' element={<Auth setToken={setToken} />}></Route>
-          <Route path='home' element={<Home />}></Route>
+          <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
+          <Route path='home' element={<Home user={user} />}></Route>
           <Route path='profile'></Route>
           <Route path='tracker/*' element={<Issues />}></Route>
           <Route path='contact'></Route>
