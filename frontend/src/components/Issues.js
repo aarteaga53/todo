@@ -4,7 +4,7 @@ import '../styles/Issues.css'
 import { Fab } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import Footer from './Footer'
-import Tasks from './Tasks'
+import TaskBox from './TaskBox'
 import CreateTask from './CreateTask'
 import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core'
 import {
@@ -86,7 +86,7 @@ const Issues = () => {
     task.type = type
 
     await fetch(`http://127.0.0.1:8000/tasks/update`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
@@ -128,9 +128,9 @@ const Issues = () => {
             modifiers={[restrictToWindowEdges]}
             onDragEnd={handleDragEnd}
           >
-            <Tasks title='Todo' tasks={todo} setTasks={setTodo} id={0} />
-            <Tasks title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
-            <Tasks title='Done' tasks={done} setTasks={setDone} id={2} />
+            <TaskBox title='Todo' tasks={todo} setTasks={setTodo} id={0} />
+            <TaskBox title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
+            <TaskBox title='Done' tasks={done} setTasks={setDone} id={2} />
           </DndContext>
         </div>
         <Footer />
@@ -140,7 +140,7 @@ const Issues = () => {
       </div>
       <div className='add-icon'>
         <Link to='create'>
-          <Fab color="primary" aria-label="add">
+          <Fab color='primary' aria-label='add'>
             <AddIcon />
           </Fab>
         </Link>

@@ -19,3 +19,7 @@
 .footer p {
     color: whitesmoke;
 }
+
+.icon:hover {
+    color: var(--purple);
+}

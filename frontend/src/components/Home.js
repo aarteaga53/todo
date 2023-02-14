@@ -1,11 +1,11 @@
 import React from 'react'
 import Footer from './Footer'
 
-const Home = () => {
+const Home = ({user}) => {
   return (
     <div className='page-body'>
-        <h1>hello world</h1>
-        <Footer />
+      <h1>Hello {user.first + ' ' + user.last}</h1>
+      <Footer />
     </div>
   )
 }
