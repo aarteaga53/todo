@@ -1,8 +1,8 @@
 require('dotenv').config({ path: '../config.env' })
 
-const express = require("express")
+const express = require('express')
 const bcrypt = require('bcrypt')
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 const ObjectId = require('mongodb').ObjectId
 
 // recordRoutes is an instance of the express router.
@@ -23,7 +23,7 @@ const dbo = require('../db/conn')
  */
 
 // read all tasks
-recordRoutes.route("/tasks").get(async (req, res) => {
+recordRoutes.route('/tasks').get(async (req, res) => {
     const dbConnect = dbo.getDb()
 
     try {
@@ -36,7 +36,7 @@ recordRoutes.route("/tasks").get(async (req, res) => {
 })
 
 // read all tasks of specified type
-recordRoutes.route("/tasks/:type").get(async (req, res) => {
+recordRoutes.route('/tasks/:type').get(async (req, res) => {
   const dbConnect = dbo.getDb()
   const type = { type: parseInt(req.params.type)}
 
@@ -50,7 +50,7 @@ recordRoutes.route("/tasks/:type").get(async (req, res) => {
 })
 
 // insert a task
-recordRoutes.route("/tasks/insert").post(async (req, res) => {
+recordRoutes.route('/tasks/insert').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const insertTask = {
@@ -70,7 +70,7 @@ recordRoutes.route("/tasks/insert").post(async (req, res) => {
 })
 
 // delete a task with given id
-recordRoutes.route("/tasks/delete/:id").delete(async (req, res) => {
+recordRoutes.route('/tasks/delete/:id').delete(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const taskId = { _id: new ObjectId(req.params.id) }
@@ -85,7 +85,7 @@ recordRoutes.route("/tasks/delete/:id").delete(async (req, res) => {
 })
 
 // update contents of a task
-recordRoutes.route("/tasks/update").post(async (req, res) => {
+recordRoutes.route('/tasks/update').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const updateTask = {
@@ -112,7 +112,7 @@ recordRoutes.route("/tasks/update").post(async (req, res) => {
 })
 
 // verify user exists
-recordRoutes.route("/verify").post(async (req, res) => {
+recordRoutes.route('/verify').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const cred = { email: req.body.email }
@@ -142,7 +142,7 @@ recordRoutes.route("/verify").post(async (req, res) => {
 })
 
 // register a new user
-recordRoutes.route("/register").post(async (req, res) => {
+recordRoutes.route('/register').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const newUser = {

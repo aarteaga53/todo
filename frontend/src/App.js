@@ -25,7 +25,7 @@ function App() {
 
     let getUser = async (temp) => {
       let response = await fetch(`http://127.0.0.1:8000/user`, {
-          method: "POST",
+          method: 'POST',
           headers: {
               'Content-type': 'application/json'
           },

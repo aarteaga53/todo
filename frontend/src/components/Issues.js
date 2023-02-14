@@ -86,7 +86,7 @@ const Issues = () => {
     task.type = type
 
     await fetch(`http://127.0.0.1:8000/tasks/update`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
@@ -140,7 +140,7 @@ const Issues = () => {
       </div>
       <div className='add-icon'>
         <Link to='create'>
-          <Fab color="primary" aria-label="add">
+          <Fab color='primary' aria-label='add'>
             <AddIcon />
           </Fab>
         </Link>

@@ -6,10 +6,6 @@ import Footer from './Footer'
 
 
 const Auth = ({setToken, setUser}) => {
-    let [first, setFirst] = useState('')
-    let [last, setLast] = useState('')
-    let [email, setEmail] = useState('')
-    let [password, setPassword] = useState('')
     let [isSignup, setIsSignup] = useState(false)
     let navigate = useNavigate()
 
@@ -26,46 +22,51 @@ const Auth = ({setToken, setUser}) => {
     /**
      * allows the user to login
      */
-    let login = async () => {
-        if(email !== '' && password !== '') {
-            const user = {email: email, password: password}
-            
-            let response = await fetch(`http://127.0.0.1:8000/verify`, {
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            })
+    let login = async (event) => {
+        event.preventDefault()
+        const form = new FormData(event.currentTarget);
+        const user = {email: form.get('email'), password: form.get('password')}
+        
+        let response = await fetch(`http://127.0.0.1:8000/verify`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
 
-            let data = await response.json()
-    
-            if(data.msg !== 'error') {
-                navigateHome(data)
-            }
+        let data = await response.json()
+
+        if(data.msg !== 'error') {
+            navigateHome(data)
         }
     }
     
     /**
      * allows the user to register
      */
-    let signup = async () => {
-        if(email !== '' && password !== '' && first !== '' && last !== '') {
-            const newUser = {first: first, last: last, email: email, password: password}
+    let signup = async (event) => {
+        event.preventDefault()
+        const form = new FormData(event.currentTarget);
+        const newUser = {
+            first: form.get('first'), 
+            last: form.get('last'), 
+            email: form.get('email'), 
+            password: form.get('password')
+        }
 
-            let response = await fetch(`http://127.0.0.1:8000/register`, {
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(newUser)
-            })
+        let response = await fetch(`http://127.0.0.1:8000/register`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
 
-            let data = await response.json()
+        let data = await response.json()
 
-            if('insertedId' in data) {
-                setIsSignup(false)
-            }
+        if('insertedId' in data) {
+            setIsSignup(false)
         }
     }
 
@@ -75,10 +76,9 @@ const Auth = ({setToken, setUser}) => {
         navigate('/home')
     }
 
-    let skip = async () => {
-        setEmail('user@email.com')
-        setPassword('password123')
-        login()
+    let skip = () => {
+        document.getElementById('email').value = 'user@email.com'
+        document.getElementById('password').value = 'password123'
     }
 
     /**
@@ -88,43 +88,24 @@ const Auth = ({setToken, setUser}) => {
         setIsSignup(!isSignup)
     }
 
-    let handleChange = (e) => {
-        switch(e.target.id) {
-            case'first':
-                setFirst(e.target.value)
-                break
-            case'last':
-                setLast(e.target.value)
-                break
-            case'email':
-                setEmail(e.target.value)
-                break
-            case'password':
-                setPassword(e.target.value)
-                break
-            default:
-                break
-        }
-    }
-
     return (
         <div className='auth-body'>
-            <div className='auth-box'>
+            <form className='auth-box' onSubmit={isSignup ? signup : login}>
                 <div className='auth-title'>{isSignup ? 'Signup' : 'Login'}</div>
                 <div className='auth-inputs'>
-                    {isSignup ? <>
-                        <TextField id='first' label='First Name' type='text' margin='normal' onChange={handleChange} />
-                        <TextField id='last' label='Last Name' type='text' margin='normal' onChange={handleChange} />
-                    </> : null}
-                    <TextField id='email' label='Email' type='text' margin='normal' onChange={handleChange} />
-                    <TextField id='password' label='Password' type='password' margin='normal' onChange={handleChange} />
+                    {isSignup ? (<>
+                        <TextField id='first' name='first' label='First Name' type='text' margin='normal' required />
+                        <TextField id='last' name='last' label='Last Name' type='text' margin='normal' required />
+                    </>) : null}
+                    <TextField id='email' name='email' label='Email' type='text' margin='normal' required />
+                    <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
                 </div>
                 <div className='auth-buttons'>
                     <Button variant='outlined' onClick={toggleAuth}>{isSignup ? 'Login' : 'Signup'}</Button>
-                    <Button variant='outlined' onClick={isSignup ? signup : login}>{isSignup ? 'Signup' : 'Login'}</Button>
-                    <Button variant='outlined' onClick={skip}>Skip</Button>
+                    <Button variant='outlined' type='submit' >{isSignup ? 'Signup' : 'Login'}</Button>
+                    {!isSignup ? (<Button variant='outlined' type='submit' onClick={skip}>Skip</Button>) : null}
                 </div>
-            </div>
+            </form>
             <Footer />
         </div>
     )
