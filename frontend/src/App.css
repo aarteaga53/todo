@@ -1,3 +1,9 @@
+:root {
+  --red: #a13d3d;
+  --brick-red: #C45349;
+  --purple: #a199ed;
+}
+
 .page-body {
   position: relative;
   top: 100px;
