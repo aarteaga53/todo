@@ -89,6 +89,7 @@ const Auth = ({setToken, setUser}) => {
     }
 
     return (
+        <>
         <div className='auth-body'>
             <form className='auth-box' onSubmit={isSignup ? signup : login}>
                 <div className='auth-title'>{isSignup ? 'Signup' : 'Login'}</div>
@@ -106,8 +107,9 @@ const Auth = ({setToken, setUser}) => {
                     {!isSignup ? (<Button variant='outlined' type='submit' onClick={skip}>Skip</Button>) : null}
                 </div>
             </form>
-            <Footer />
         </div>
+        <Footer />
+        </>
     )
 }
 

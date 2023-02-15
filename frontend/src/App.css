@@ -1,7 +1,9 @@
 :root {
+  --black: #222222;
   --red: #cb3434;
   --brick-red: #C45349;
   --purple: #a199ed;
+  --blue: #4e59d0;
 }
 
 .page-body {

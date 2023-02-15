@@ -92,7 +92,8 @@ let updateUser = async (user, id) => {
   try {
     const userId = { _id: new ObjectId(id) }
     const result = await collection.updateOne(userId, { $set: user })
-  
+    
+    console.log(result)
   } catch(err) {
     console.log(err)
   }

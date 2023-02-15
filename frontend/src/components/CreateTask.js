@@ -59,14 +59,14 @@ const CreateTask = ({user, set0, set1, set2}) => {
       <form className='create-box' onSubmit={createTask}>
         <div className='auth-title'>Create Task</div>
         <TextField id='title' name='title' label='Title' variant='outlined' margin='normal' required />
-        <TextField id='body' name='body' label='Body' variant='outlined' margin='normal' multiline required />
-        <FormControl>
-          <FormLabel id='type'>Type</FormLabel>
+        <TextField id='body' name='body' label='Body' variant='outlined' margin='normal' minRows={3} multiline required />
+        <FormControl margin='normal'>
+          <FormLabel id='type' required>Type</FormLabel>
           <RadioGroup
             aria-labelledby='type'
             defaultValue='0'
             name='type'
-          >
+            >
             <FormControlLabel value='0' control={<Radio />} label='Todo' />
             <FormControlLabel value='1' control={<Radio />} label='In Progress' />
             <FormControlLabel value='2' control={<Radio />} label='Done' />
