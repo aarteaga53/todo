@@ -4,7 +4,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-const Task = ({index, setTasks, task}) => {
+const Task = ({user, index, setTasks, task}) => {
   const {isDragging, attributes, listeners, setNodeRef, transform} = useDraggable({
     id: task.date,
     data: {
@@ -19,10 +19,18 @@ const Task = ({index, setTasks, task}) => {
   }
 
   let deleteTask = async () => {
-    let response = await fetch(`http://127.0.0.1:8000/tasks/delete/${task._id}`, { method: 'DELETE' })
+    // let response = await fetch(`http://127.0.0.1:8000/tasks/delete/${task._id}`, { method: 'DELETE' })
+    let response = await fetch(`http://127.0.0.1:8000/tasks/delete/${task._id}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({ user: user })
+    })
     let data = await response.json()
 
     if(data.msg === 'success') {
+      user.tasks.splice(user.tasks.indexOf(task._id), 1)
       setTasks(tasks => [
         ...tasks.slice(0, index),
         ...tasks.slice(index + 1, tasks.length)

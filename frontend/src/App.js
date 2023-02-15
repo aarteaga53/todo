@@ -8,18 +8,18 @@ import Issues from './components/Issues';
 
 function App() {
   let [token, setToken] = useState(null)
-  let [user, setUser] = useState({})
+  let [user, setUser] = useState(null)
 
   useEffect(() => {
     /**
      * keeps user logged in
      */
-    let getToken = () => {
+    let getToken = async () => {
       const data = window.localStorage.getItem('token')
   
       if(data !== null) {
         setToken(JSON.parse(data))
-        getUser(data)
+        await getUser(data)
       }
     }
 
@@ -39,8 +39,6 @@ function App() {
     getToken()
   }, [token])
 
-  
-
   return (
     <div>
       <Router>
@@ -50,7 +48,7 @@ function App() {
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
           <Route path='home' element={<Home user={user} />}></Route>
           <Route path='profile'></Route>
-          <Route path='tracker/*' element={<Issues />}></Route>
+          <Route path='tracker/*' element={<Issues user={user} />}></Route>
           <Route path='contact'></Route>
         </Routes>
       </Router>
