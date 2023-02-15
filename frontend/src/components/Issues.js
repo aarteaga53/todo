@@ -7,11 +7,9 @@ import Footer from './Footer'
 import TaskBox from './TaskBox'
 import CreateTask from './CreateTask'
 import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core'
-import {
-  restrictToWindowEdges,
-} from '@dnd-kit/modifiers'
+import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 
-const Issues = () => {
+const Issues = ({user}) => {
   let [todo, setTodo] = useState([])
   let [progress, setProgress] = useState([])
   let [done, setDone] = useState([])
@@ -20,29 +18,45 @@ const Issues = () => {
     /**
      * Gets all tasks of a given type from database
      */
-    let getTasks = async (type) => {
-      let response = await fetch(`http://127.0.0.1:8000/tasks/${type}`)
-      let data = await response.json()
-      
-      switch(type) {
-        case 0:
-          setTodo(data)
-          break
-        case 1:
-          setProgress(data)
-          break
-        case 2:
-          setDone(data)
-          break
-        default:
-          break
+    let getTasks = async () => {
+      if(user) {
+        // let response = await fetch(`http://127.0.0.1:8000/tasks/${type}`)
+        let response = await fetch(`http://127.0.0.1:8000/tasks`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({ tasks: 'tasks' in user ? user.tasks : [] })
+        })
+        let data = await response.json()
+        let temp0 = []
+        let temp1 = []
+        let temp2 = []
+  
+        data.forEach(task => {
+          switch(task.type) {
+            case 0:
+              temp0.push(task)
+              break
+            case 1:
+              temp1.push(task)
+              break
+            case 2:
+              temp2.push(task)
+              break
+            default:
+              break
+          }
+        })
+        
+        setTodo(temp0)
+        setProgress(temp1)
+        setDone(temp2)
       }
     }
 
-    getTasks(0)
-    getTasks(1)
-    getTasks(2)
-  }, [])
+    getTasks()
+  }, [user])
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
@@ -128,14 +142,14 @@ const Issues = () => {
             modifiers={[restrictToWindowEdges]}
             onDragEnd={handleDragEnd}
           >
-            <TaskBox title='Todo' tasks={todo} setTasks={setTodo} id={0} />
-            <TaskBox title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
-            <TaskBox title='Done' tasks={done} setTasks={setDone} id={2} />
+            <TaskBox user={user} title='Todo' tasks={todo} setTasks={setTodo} id={0} />
+            <TaskBox user={user} title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
+            <TaskBox user={user} title='Done' tasks={done} setTasks={setDone} id={2} />
           </DndContext>
         </div>
         <Footer />
         <Routes>
-          <Route path='create' element={<CreateTask set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
+          <Route path='create' element={<CreateTask user={user} set0={setTodo} set1={setProgress} set2={setDone} />}></Route>
         </Routes>
       </div>
       <div className='add-icon'>

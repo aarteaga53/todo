@@ -2,15 +2,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material'
 
-const CreateTask = ({set0, set1, set2}) => {
+const CreateTask = ({user, set0, set1, set2}) => {
   let navigate = useNavigate()
 
   let createTask = async (event) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget);
     const newTask = {
-        title: form.get('title'), 
-        body: form.get('body'), 
+        title: form.get('title'),
+        body: form.get('body'),
         type: form.get('type'),
         date: new Date()
     }
@@ -20,13 +20,21 @@ const CreateTask = ({set0, set1, set2}) => {
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(newTask)
+      body: JSON.stringify({ user: user, task: newTask })
     })
 
     let data = await response.json()
 
     if('insertedId' in data) {
       newTask._id = data.insertedId
+      
+      if('tasks' in user) {
+        user.tasks.push(data.insertedId)
+      } else {
+        user.tasks = [data.insertedId]
+      }
+
+      console.log(user)
 
       switch(newTask.type) {
         case '0':
@@ -34,7 +42,7 @@ const CreateTask = ({set0, set1, set2}) => {
           break
         case '1':
           set1(type1 => [...type1, newTask])
-          break          
+          break
         case '2':
           set2(type2 => [...type2, newTask])
           break
