@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Auth from './components/Auth';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
 import Issues from './components/Issues';
+import Profile from './components/Profile';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -46,9 +46,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
-          <Route path='home' element={<Home user={user} />}></Route>
-          <Route path='profile'></Route>
-          <Route path='tracker/*' element={<Issues user={user} />}></Route>
+          <Route path='home/*' element={<Issues user={user} />}></Route>
+          <Route path='profile' element={<Profile user={user} />}></Route>
           <Route path='contact'></Route>
         </Routes>
       </Router>
