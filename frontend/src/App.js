@@ -5,10 +5,13 @@ import Auth from './components/Auth';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Issues from './components/Issues';
+import './styles/DarkMode.css';
 
 function App() {
   let [token, setToken] = useState(null)
   let [user, setUser] = useState(null)
+
+  
 
   useEffect(() => {
     /**
@@ -35,6 +38,8 @@ function App() {
       let data = await response.json()
       setUser(data)
     }
+
+    
 
     getToken()
   }, [token])
