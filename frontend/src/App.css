@@ -4,6 +4,11 @@
   --brick-red: #C45349;
   --purple: #a199ed;
   --blue: #4e59d0;
+  --dark-blue: #191970;
+}
+
+body {
+  color: var(--black);
 }
 
 .page-body {

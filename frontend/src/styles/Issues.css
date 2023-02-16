@@ -52,7 +52,7 @@
 }
 
 .task-header {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--black);
     padding-bottom: 5px;
     margin-bottom: 15px;
     display: flex;
