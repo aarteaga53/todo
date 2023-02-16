@@ -20,7 +20,6 @@ const Issues = ({user}) => {
      */
     let getTasks = async () => {
       if(user) {
-        // let response = await fetch(`http://127.0.0.1:8000/tasks/${type}`)
         let response = await fetch(`http://127.0.0.1:8000/tasks`, {
           method: 'POST',
           headers: {

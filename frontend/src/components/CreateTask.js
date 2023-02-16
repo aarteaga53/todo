@@ -74,7 +74,7 @@ const CreateTask = ({user, set0, set1, set2}) => {
         </FormControl>
         <div className='create-buttons'>
           <Button variant='outlined' onClick={() => navigate(-1)}>Back</Button>
-          <Button variant='outlined' type='submit'>Create</Button>
+          <Button variant='outlined' type='submit'>Add</Button>
         </div>
       </form>
     </div>
