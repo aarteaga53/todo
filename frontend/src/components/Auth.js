@@ -20,9 +20,9 @@ const Auth = ({setToken, setUser}) => {
     }, [setToken, setUser])
 
     /**
-     * allows the user to login
+     * allows the user to signin
      */
-    let login = async (event) => {
+    let signin = async (event) => {
         event.preventDefault()
         const form = new FormData(event.currentTarget);
         const user = {email: form.get('email'), password: form.get('password')}
@@ -82,16 +82,17 @@ const Auth = ({setToken, setUser}) => {
     }
 
     /**
-     * changes between login and signup inputs
+     * changes between signin and signup inputs
      */
     let toggleAuth = () => {
         setIsSignup(!isSignup)
     }
 
     return (
+        <>
         <div className='auth-body'>
-            <form className='auth-box' onSubmit={isSignup ? signup : login}>
-                <div className='auth-title'>{isSignup ? 'Signup' : 'Login'}</div>
+            <form className='auth-box' onSubmit={isSignup ? signup : signin}>
+                <div className='auth-title'>{isSignup ? 'Sign Up' : 'Sign In'}</div>
                 <div className='auth-inputs'>
                     {isSignup ? (<>
                         <TextField id='first' name='first' label='First Name' type='text' margin='normal' required />
@@ -101,13 +102,14 @@ const Auth = ({setToken, setUser}) => {
                     <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
                 </div>
                 <div className='auth-buttons'>
-                    <Button variant='outlined' onClick={toggleAuth}>{isSignup ? 'Login' : 'Signup'}</Button>
-                    <Button variant='outlined' type='submit' >{isSignup ? 'Signup' : 'Login'}</Button>
+                    <Button variant='outlined' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
+                    <Button variant='outlined' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
                     {!isSignup ? (<Button variant='outlined' type='submit' onClick={skip}>Skip</Button>) : null}
                 </div>
             </form>
-            <Footer />
         </div>
+        <Footer />
+        </>
     )
 }
 

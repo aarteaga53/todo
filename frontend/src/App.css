@@ -1,7 +1,14 @@
 :root {
+  --black: #222222;
   --red: #cb3434;
   --brick-red: #C45349;
   --purple: #a199ed;
+  --blue: #4e59d0;
+  --dark-blue: #191970;
+}
+
+body {
+  color: var(--black);
 }
 
 .page-body {
@@ -11,4 +18,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.layout {
+  min-height: calc(100vh - 360px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 25px 0;
 }
