@@ -5,6 +5,14 @@
   --purple: #a199ed;
   --blue: #4e59d0;
   --dark-blue: #191970;
+  --gray: #b4b4b4;
+  --yellow: #F9F091;
+  --p-green: #5ACF76;
+  --p-blue: #53BCDA;
+  --p-orange: #FF7F36;
+  --p-purple: #B460DA;
+  --p-pink: #F06D99;
+  --p-yellow: #F6DD3A;
 }
 
 body {
@@ -13,7 +21,7 @@ body {
 
 .page-body {
   position: relative;
-  top: 100px;
+  top: 5vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,9 +29,15 @@ body {
 }
 
 .layout {
-  min-height: calc(100vh - 360px);
+  min-height: calc(95vh - 164px);
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 25px 0;
+}
+
+@media only screen and (max-width: 1800px) {
+  .page-body { top: 8vh; }
+
+  .layout { min-height: calc(92vh - 165px); }
 }

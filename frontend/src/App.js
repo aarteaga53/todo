@@ -5,6 +5,7 @@ import Auth from './components/Auth';
 import Navbar from './components/Navbar';
 import Issues from './components/Issues';
 import Profile from './components/Profile';
+import Landing from './components/Landing';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -42,7 +43,7 @@ function App() {
   return (
     <div>
       <Router>
-        {token ? <Navbar /> : null}
+        {token ? <Navbar /> : <Landing />}
         <Routes>
           <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
