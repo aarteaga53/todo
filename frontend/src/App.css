@@ -8,15 +8,23 @@
   --gray: #b4b4b4;
   --yellow: #F9F091;
   --p-green: #5ACF76;
+  --p-green-dark: #43c863;
   --p-blue: #53BCDA;
+  --p-blue-dark: #3ab2d5;
   --p-orange: #FF7F36;
+  --p-orange-dark: #ff6b17;
   --p-purple: #B460DA;
+  --p-purple-dark: #a847d4;
   --p-pink: #F06D99;
+  --p-pink-dark: #ed4d83;
   --p-yellow: #F6DD3A;
+  --p-yellow-dark: #f5d81d;
 }
 
 body {
   color: var(--black);
+  user-select: text;
+  cursor: default;
 }
 
 .page-body {
