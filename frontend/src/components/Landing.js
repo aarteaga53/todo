@@ -6,7 +6,7 @@ const Landing = () => {
   // top: Math.floor(Math.random() * (window.innerHeight - 555))
   const postIts = [
     {
-      color: 'p-green', title: 'Tasks', 
+      color: 'p-green', title: 'Create', 
       body: 'Write out your tasks, activities, or appointments to keep track of.'
     },
     {
@@ -18,16 +18,16 @@ const Landing = () => {
       body: 'Color code your tasks however you like.'
     },
     {
-      color: 'p-purple', title: 'Title', 
-      body: 'Body'
+      color: 'p-purple', title: 'Customize', 
+      body: 'Move and place your tasks anywhere around your screen.'
     },
     {
-      color: 'p-pink', title: 'Title', 
-      body: 'Body'
+      color: 'p-pink', title: 'Access', 
+      body: 'Sign in from anywhere to access your tasks or create new ones on the spot.'
     },
     {
-      color: 'p-yellow', title: 'Title', 
-      body: 'Body'
+      color: 'p-yellow', title: 'Todo', 
+      body: 'Write out everything you need to do and store it all in one place, that is accessible anywhere.'
     }
   ]
 
@@ -39,10 +39,10 @@ const Landing = () => {
       </div>
       <div className='body'>
         {postIts.map((postIt, index) => (
-          <div className={`post-it ${postIt.color}`} style={{marginTop: index * 100 + 50}} key={index}>
-            <div className={`corner ${postIt.color}-dark`}></div>
+          <div className={`post-it ${postIt.color}`} style={{marginTop: index * (window.innerWidth > 1800 ? 125 : 75) + 50}} key={index}>
+            {/* <div className={`corner ${postIt.color}-dark`}></div> */}
             <input className='post-title post-select' defaultValue={postIt.title} />
-            <textarea className='post-body post-select' rows={20} defaultValue={postIt.body} />
+            <textarea className='post-body post-select' rows={15} defaultValue={postIt.body} />
           </div>
         ))}
       </div>
