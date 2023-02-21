@@ -98,7 +98,7 @@
 
 .add-icon {
     position: fixed;
-    bottom: 250px;
+    bottom: 150px;
     right: 50px;
 }
 
@@ -109,6 +109,16 @@
 .delete-icon {
     color: var(--black);
     z-index: 0;
+}
+
+.canvas {
+    width: 100%;
+    padding: 50px;
+    background-color: var(--purple);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-content: flex-start;
 }
 
 @media only screen and (max-width: 1800px) {

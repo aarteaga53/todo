@@ -37,11 +37,12 @@ body {
 }
 
 .layout {
-  min-height: calc(95vh - 164px);
+  /* min-height: calc(95vh - 164px); */
+  min-height: calc(95vh - 114px);
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 25px 0;
+  /* padding: 25px 0; */
 }
 
 @media only screen and (max-width: 1800px) {
