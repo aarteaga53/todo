@@ -5,15 +5,31 @@
   --purple: #a199ed;
   --blue: #4e59d0;
   --dark-blue: #191970;
+  --gray: #b4b4b4;
+  --yellow: #F9F091;
+  --p-green: #5ACF76;
+  --p-green-dark: #43c863;
+  --p-blue: #53BCDA;
+  --p-blue-dark: #3ab2d5;
+  --p-orange: #FF7F36;
+  --p-orange-dark: #ff6b17;
+  --p-purple: #B460DA;
+  --p-purple-dark: #a847d4;
+  --p-pink: #F06D99;
+  --p-pink-dark: #ed4d83;
+  --p-yellow: #F6DD3A;
+  --p-yellow-dark: #f5d81d;
 }
 
 body {
   color: var(--black);
+  user-select: text;
+  cursor: default;
 }
 
 .page-body {
   position: relative;
-  top: 100px;
+  top: 5vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,9 +37,16 @@ body {
 }
 
 .layout {
-  min-height: calc(100vh - 360px);
+  /* min-height: calc(95vh - 164px); */
+  min-height: calc(95vh - 114px);
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 25px 0;
+  /* padding: 25px 0; */
+}
+
+@media only screen and (max-width: 1800px) {
+  .page-body { top: 8vh; }
+
+  .layout { min-height: calc(92vh - 165px); }
 }

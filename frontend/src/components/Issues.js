@@ -14,6 +14,14 @@ const Issues = ({user}) => {
   let [progress, setProgress] = useState([])
   let [done, setDone] = useState([])
 
+  const sensors = useSensors(
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        distance: 1,
+      },
+    }),
+  );
+
   useEffect(() => {
     /**
      * Gets all tasks of a given type from database
@@ -56,12 +64,6 @@ const Issues = ({user}) => {
 
     getTasks()
   }, [user])
-
-  const mouseSensor = useSensor(MouseSensor, {
-    activationConstraint: {
-      distance: 1,
-    },
-  })
 
   let removeTask = (index, type) => {
     let task = {}
@@ -137,7 +139,7 @@ const Issues = ({user}) => {
       <div className='page-body'>
         <div className='layout'>
           <DndContext 
-            sensors={useSensors(mouseSensor)} 
+            sensors={sensors} 
             modifiers={[restrictToWindowEdges]}
             onDragEnd={handleDragEnd}
           >

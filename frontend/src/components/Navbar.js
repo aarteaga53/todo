@@ -17,12 +17,14 @@ function Navbar() {
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
         <div className='hiddenLinks'>
           <Link to='home'>Home</Link>
+          <Link to='canvas'>Canvas</Link>
           <Link to='profile'>Profile</Link>
           <Link to=''>Logout</Link>
         </div>
       </div>
       <div className='rightSide'>
         <Link to='home'>Home</Link>
+        <Link to='canvas'>Canvas</Link>
         <Link to='profile'>Profile</Link>
         <Link to=''>Logout</Link>
         <Button onClick={toggleNavbar}>
