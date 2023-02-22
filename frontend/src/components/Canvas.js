@@ -3,7 +3,7 @@ import '../styles/Issues.css'
 import Footer from './Footer'
 import PostIt from './PostIt'
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { arrayMove, rectSwappingStrategy, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import { arrayMove, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 
 const Canvas = ({user}) => {
@@ -14,14 +14,14 @@ const Canvas = ({user}) => {
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
-  );
+  )
 
   useEffect(() => {
     /**
      * Gets all tasks of a given type from database
      */
     let getTasks = async () => {
-      if(user) {
+      if(user && 'tasks' in user) {
         let response = await fetch(`http://127.0.0.1:8000/tasks`, {
           method: 'POST',
           headers: {
@@ -31,7 +31,7 @@ const Canvas = ({user}) => {
         })
         let data = await response.json()
         
-        setTasks(data)
+        setTasks(data.sort((a, b) => { return a.type - b.type } ))
       }
     }
 
@@ -42,10 +42,12 @@ const Canvas = ({user}) => {
     const {active, over} = event
     
     if(active.id !== over.id) {
-      setTasks(tasks => {
+      setTasks((tasks) => {
         const oldIndex = tasks.indexOf(active.id)
         const newIndex = tasks.indexOf(over.id)
-        
+        // const oldIndex = tasks.findIndex(task => task.date === active.id);
+        // const newIndex = tasks.findIndex(task => task.date === over.id);
+
         return arrayMove(tasks, oldIndex, newIndex)
       })
     }
@@ -63,11 +65,11 @@ const Canvas = ({user}) => {
           >
             <div className='canvas'>
               <SortableContext
-                  items={tasks}
-                  strategy={rectSwappingStrategy}
+                items={tasks}
+                // strategy={rectSwappingStrategy}
               >
                 {tasks.map((task, index) => (
-                    <PostIt postIt={task} id={task} key={index} />
+                  <PostIt postIt={task} id={task} key={index} />
                 ))}
               </SortableContext>
             </div>
