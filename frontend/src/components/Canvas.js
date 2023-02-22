@@ -1,48 +1,81 @@
-import { useDroppable } from '@dnd-kit/core'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import '../styles/Issues.css'
+import Footer from './Footer'
 import PostIt from './PostIt'
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { arrayMove, rectSwappingStrategy, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 
-const Canvas = ({user, tasks}) => {
-  const {setNodeRef} = useDroppable({
-    id: 'canvas',
-  })
+const Canvas = ({user}) => {
+  let [tasks, setTasks] = useState([])
 
-  const postIts = [
-    {
-      color: 'p-green', title: 'Create', 
-      body: 'Write out your tasks, activities, or appointments to keep track of.'
-    },
-    {
-      color: 'p-blue', title: 'Organize', 
-      body: 'Keep your tasks organized and easy to find.'
-    },
-    {
-      color: 'p-orange', title: 'Color', 
-      body: 'Color code your tasks however you like.'
-    },
-    {
-      color: 'p-purple', title: 'Customize', 
-      body: 'Move and place your tasks anywhere around your screen.'
-    },
-    {
-      color: 'p-pink', title: 'Access', 
-      body: 'Sign in from anywhere to access your tasks or create new ones on the spot.'
-    },
-    {
-      color: 'p-yellow', title: 'Todo', 
-      body: 'Write out everything you need to do and store it all in one place, that is accessible anywhere.'
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  useEffect(() => {
+    /**
+     * Gets all tasks of a given type from database
+     */
+    let getTasks = async () => {
+      if(user) {
+        let response = await fetch(`http://127.0.0.1:8000/tasks`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({ tasks: 'tasks' in user ? user.tasks : [] })
+        })
+        let data = await response.json()
+        
+        setTasks(data)
+      }
     }
-  ]
+
+    getTasks()
+  }, [user])
+
+  let handleDragEnd = (event) => {
+    const {active, over} = event
+    
+    if(active.id !== over.id) {
+      setTasks(tasks => {
+        const oldIndex = tasks.indexOf(active.id)
+        const newIndex = tasks.indexOf(over.id)
+        
+        return arrayMove(tasks, oldIndex, newIndex)
+      })
+    }
+  }
 
   return (
-    <div className='canvas' ref={setNodeRef}>
-      {/* {tasks.map((task, index) => (
-        <PostIt postIt={task} id={index+1} key={index} />
-      ))} */}
-      {postIts.map((postIt, index) => (
-        <PostIt postIt={postIt} id={index+2} key={index} />
-      ))}
-    </div>
+    <>
+      <div className='page-body'>
+        <div className='layout'>
+          <DndContext 
+            sensors={sensors} 
+            collisionDetection={closestCenter}
+            modifiers={[restrictToWindowEdges]}
+            onDragEnd={handleDragEnd}
+          >
+            <div className='canvas'>
+              <SortableContext
+                  items={tasks}
+                  strategy={rectSwappingStrategy}
+              >
+                {tasks.map((task, index) => (
+                    <PostIt postIt={task} id={task} key={index} />
+                ))}
+              </SortableContext>
+            </div>
+          </DndContext>
+        </div>
+        <Footer />
+      </div>
+    </>
   )
 }
 

@@ -68,12 +68,15 @@
 
 .post-it:hover {
     border-bottom-left-radius: 64px;
-    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
 }
 
 .post-drag {
     position: relative;
     transition-duration: 0.3s;
+}
+
+.post-drag:hover {
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
 }
 
 .post-it .corner {
@@ -93,7 +96,7 @@
     left: 2px;
     bottom: 2px;
     border-bottom-left-radius: 64px;
-    /* box-shadow: -3px 3px 3px 0px rgba(0,0,0,0.8); */
+    /* box-shadow: 1px -1px 3px 0px rgba(0,0,0,0.8); */
 }
 
 .corner:hover {
@@ -208,9 +211,9 @@
 
     .body { top: 8vh; }
 
-    .post-it { height: 300px; }
+    .post-it { height: 275px; }
 
-    .post-body { width: 250px; }
+    .post-body { width: 225px; }
 
     .post-animate:hover { padding-left: 275px; }
 }

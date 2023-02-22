@@ -8,7 +8,7 @@ const TaskBox = ({user, title, tasks, setTasks, id}) => {
   })
 
   const style = {
-    backgroundColor: isOver ? '#a199ed' : '#191970'
+    backgroundColor: isOver ? '#a199ed' : '#4e59d0'
   }
 
   return (

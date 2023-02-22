@@ -8,7 +8,6 @@ import TaskBox from './TaskBox'
 import CreateTask from './CreateTask'
 import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
-import Canvas from './Canvas'
 
 const Issues = ({user}) => {
   let [todo, setTodo] = useState([])
@@ -144,7 +143,6 @@ const Issues = ({user}) => {
             modifiers={[restrictToWindowEdges]}
             onDragEnd={handleDragEnd}
           >
-            {/* <Canvas user={user} tasks={done} /> */}
             <TaskBox user={user} title='Todo' tasks={todo} setTasks={setTodo} id={0} />
             <TaskBox user={user} title='In Progress' tasks={progress} setTasks={setProgress} id={1} />
             <TaskBox user={user} title='Done' tasks={done} setTasks={setDone} id={2} />
