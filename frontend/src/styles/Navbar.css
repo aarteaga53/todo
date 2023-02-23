@@ -1,8 +1,10 @@
 .navbar {
     position: fixed;
     width: 100%;
-    height: 100px;
-    background-color: 	#334;
+
+    height: 5vh;
+    background-color: 	var(--dark-blue);
+
     display: flex;
     flex-direction: row;
     z-index: 1;
@@ -32,10 +34,22 @@
    justify-content: center; 
 }
 
-.navbar a{
+.navbar a {
     color: whitesmoke;
     text-decoration: none;
-    margin: 20px;
+    margin-right: 10px;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.navbar a:last-of-type {
+    margin-right: 0;
+}
+
+.navbar a:hover {
+    background-color: var(--purple);
 }
 
 .navbar .rightSide button {
@@ -102,3 +116,6 @@
     }
 }
 
+@media only screen and (max-width: 1800px) {
+    .navbar { height: 8vh; }
+}

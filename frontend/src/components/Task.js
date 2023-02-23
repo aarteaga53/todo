@@ -19,7 +19,6 @@ const Task = ({user, index, setTasks, task}) => {
   }
 
   let deleteTask = async () => {
-    // let response = await fetch(`http://127.0.0.1:8000/tasks/delete/${task._id}`, { method: 'DELETE' })
     let response = await fetch(`http://127.0.0.1:8000/tasks/delete/${task._id}`, {
       method: 'POST',
       headers: {
@@ -61,7 +60,7 @@ const Task = ({user, index, setTasks, task}) => {
         <div className='task-header'>
           <div className='task-title'>{task.title}</div>
           <div className='task-date'>{formatDate(new Date(task.date))}</div>
-          <IconButton className='delete-icon' onClick={deleteTask}>{<DeleteIcon />}</IconButton>
+          <IconButton className='delete-icon-btn' onClick={deleteTask}>{<DeleteIcon className='delete-icon' />}</IconButton>
         </div>
         <div className='task-body'>{task.body}</div>
       </div>
