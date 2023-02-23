@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.navbar .leftSide Switch {
+    color: white;
+}
+
 .navbar .rightSide {
    flex: 50%;
    height: 100%;

@@ -4,6 +4,7 @@ import '../styles/Navbar.css'
 import ReorderIcon from '@mui/icons-material/Reorder';
 import { Button } from '@mui/material';
 import '../styles/DarkMode.css'
+import {Switch} from '@mui/material';
 
 
 
@@ -34,8 +35,11 @@ function Navbar() {
   return (
     <div className={'navbar ${theme'}>
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
-        <button onClick={toggleTheme} >Toggle Theme</button>
-        
+      
+      <Switch
+        checked={theme}
+        onChange={() => {toggleTheme(!theme);}}
+      />
         <div className='hiddenLinks'>
           <Link to='home'>Home</Link>
           <Link to='profile'>Profile</Link>
@@ -57,3 +61,4 @@ function Navbar() {
 }
 
 export default Navbar
+/*<button onClick={toggleTheme} >Toggle Theme</button> */

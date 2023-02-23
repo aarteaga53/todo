@@ -8,22 +8,25 @@
 }
 
 .auth-box {
-    border: 2px solid #191970;
+    border: 2px solid black;
     border-radius: 4px;
     padding: 50px 75px;
     margin-bottom: 50px;
     text-align: center;
 }
 
+
 .auth-title {
     font-size: 32px;
     margin-bottom: 25px;
+    color: black;
 }
 
 .auth-inputs {
     display: flex;
     flex-direction: column;
 }
+
 
 .auth-buttons {
     margin-top: 15px;
