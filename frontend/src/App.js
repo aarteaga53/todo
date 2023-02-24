@@ -12,6 +12,8 @@ function App() {
   let [token, setToken] = useState(null)
   let [user, setUser] = useState(null)
 
+  
+
   useEffect(() => {
     /**
      * keeps user logged in
@@ -37,6 +39,8 @@ function App() {
       let data = await response.json()
       setUser(data)
     }
+
+    
 
     getToken()
   }, [token])
