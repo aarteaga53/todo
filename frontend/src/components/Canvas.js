@@ -69,14 +69,10 @@ const Canvas = ({user}) => {
   }
 
   let changeColor = (direction) => {
-    if(direction === 1) {
-      if(colorIndex < colors.length - 1) {
-        setColorIndex(colorIndex + 1)
-      }
-    } else {
-      if(colorIndex > 0) {
+    if(direction === 1 && colorIndex < colors.length - 1) {
+      setColorIndex(colorIndex + 1)
+    } else if(direction === 0 && colorIndex > 0) {
         setColorIndex(colorIndex - 1)
-      }
     }
   }
 
@@ -156,7 +152,7 @@ const Canvas = ({user}) => {
                 // strategy={rectSwappingStrategy}
               >
                 {tasks.map((task, index) => (
-                  <PostIt user={user} postIt={task} setTasks={setTasks} id={task} index={index} key={index} />
+                  <PostIt user={user} postIt={task} setTasks={setTasks} id={task} index={index} colors={colors} key={index} />
                 ))}
               </SortableContext>
             </div>
@@ -175,8 +171,8 @@ const Canvas = ({user}) => {
                 <Icon className='post-icon' onClick={clear}><ClearIcon /></Icon>
               </div>
             </div>) : null}
-            <input className='post-title post-select' id='newTitle' value={newTitle} onChange={handleChange} />
-            <textarea className='post-body post-select' id='newBody' rows={15} value={newBody} onChange={handleChange} />
+            <input className='post-title post-select' id='newTitle' value={newTitle} onChange={handleChange} onClick={() => setIsEditing(true)} />
+            <textarea className='post-body post-select' id='newBody' rows={15} value={newBody} onChange={handleChange} onClick={() => setIsEditing(true)} />
           </div>)}
         </div>
         <Footer />

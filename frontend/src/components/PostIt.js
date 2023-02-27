@@ -10,8 +10,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import Icon from '@mui/material/Icon'
 
-const PostIt = ({user, postIt, setTasks, id, index}) => {
-  const colors = ['p-green', 'p-blue', 'p-orange', 'p-purple', 'p-pink', 'p-yellow']
+const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
   let [title, setTitle] = useState(postIt.title)
   let [body, setBody] = useState(postIt.body)
   let [isEditing, setIsEditing] = useState(false)
@@ -20,7 +19,9 @@ const PostIt = ({user, postIt, setTasks, id, index}) => {
   useEffect(() => {
     setTitle(postIt.title)
     setBody(postIt.body)
-  }, [postIt])
+    setIsEditing(false)
+    setColorIndex(colors.indexOf(postIt.color))
+  }, [postIt, colors])
 
   const {attributes, listeners, setNodeRef, transform, transition, setActivatorNodeRef} = useSortable({
     id: id,
