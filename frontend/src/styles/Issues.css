@@ -121,6 +121,42 @@
     align-content: flex-start;
 }
 
+.create-post {
+    position: fixed;
+    bottom: 140px;
+    right: 25px;
+}
+
+.trash {
+    height: 400px;
+    width: 400px;
+}
+
+.arrow-icons {
+    position: absolute;
+    left: 10px;
+}
+
+.edit-icons {
+    position: absolute;
+    right: 10px;
+}
+
+.post-icon {
+    border-radius: 20px;
+    padding: 5px;
+    transition-duration: 0.3s;
+}
+
+.post-icon:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 @media only screen and (max-width: 1800px) {
     .task-box { width: 90%; }
+
+    .create-post { bottom: 25px; }
+
+    .trash { width: 300px; height: 300px; }
 }

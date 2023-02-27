@@ -12,6 +12,7 @@ const CreateTask = ({user, set0, set1, set2}) => {
         title: form.get('title'),
         body: form.get('body'),
         type: form.get('type'),
+        color: 'p-green',
         date: new Date()
     }
 
@@ -33,8 +34,6 @@ const CreateTask = ({user, set0, set1, set2}) => {
       } else {
         user.tasks = [data.insertedId]
       }
-
-      console.log(user)
 
       switch(newTask.type) {
         case '0':
