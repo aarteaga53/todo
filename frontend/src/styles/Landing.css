@@ -1,0 +1,240 @@
+.panel {
+    position: fixed;
+    display: flex;
+    align-items: flex-end;
+    height: 5vh;
+    width: 100%;
+    background-color: var(--dark-blue);
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
+}
+
+.app-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 15px 25px;
+    color: white;
+}
+
+.auth {
+    margin: 0 25px 10px auto;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 16px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    transition: 0.3s;
+}
+
+.auth:hover {
+    background-color: var(--purple);
+    cursor: pointer;
+}
+
+.body {
+    position: relative;
+    top: 5vh;
+    width: 100%;
+    /* height: 95vh; */
+}
+
+.post-animate {
+    position: fixed;
+    animation-name: landing;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+}
+
+.post-animate:hover {
+    /* border-bottom-left-radius: 64px; */
+    padding-left: 300px;
+    /* box-shadow: inset 0 0 0 15px #FF7A59; */
+}
+
+.post-animate:nth-child(2) { animation-delay: 0.25s; }
+.post-animate:nth-child(3) { animation-delay: 0.5s; }
+.post-animate:nth-child(4) { animation-delay: 0.75s; }
+.post-animate:nth-child(5) { animation-delay: 1s; }
+.post-animate:nth-child(6) { animation-delay: 1.25s; }
+
+.post-it {
+    height: 325px;
+    transition-duration: 0.5s;
+    background-clip: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-it:hover {
+    border-bottom-left-radius: 64px;
+}
+
+.post-drag {
+    position: relative;
+    transition-duration: 0.3s;
+}
+
+.post-drag:hover {
+    box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.8);
+}
+
+.post-it .corner {
+    transition-delay: 0s;
+    visibility: hidden;
+}
+
+.post-it:hover .corner {
+    transition-delay: 0.15s;
+    visibility: visible;
+}
+
+.corner {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    left: 2px;
+    bottom: 2px;
+    border-bottom-left-radius: 64px;
+    /* box-shadow: 1px -1px 3px 0px rgba(0,0,0,0.8); */
+}
+
+.corner:hover {
+    cursor: pointer;
+}
+
+.post-select {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    padding: 0;
+}
+
+.post-select:focus {
+    outline: none;
+}
+
+.post-title {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-body {
+    margin: 25px;
+    text-align: justify;
+    width: 275px;
+    /* font-style: italic; */
+}
+
+/* width */
+.post-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.post-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.post-body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: var(--gray);
+}
+
+/* Handle on hover */
+.post-body::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.gray {
+    background-color: var(--gray);
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.p-green {
+    /* background-color: var(--p-green); */
+    /* background-color: #f3d2c1; */
+    background-color: #c3f0ca;
+}
+
+.p-green-dark {
+    background-color: var(--p-green-dark);
+}
+
+.p-blue {
+    /* background-color: var(--p-blue); */
+    /* background-color: #8bd3dd; */
+    background-color: #8bd3dd;
+}
+
+.p-blue-dark {
+    background-color: var(--p-blue-dark);
+}
+
+.p-orange {
+    /* background-color: var(--p-orange); */
+    /* background-color: #f1ad8a; */
+    background-color: #ffc0ad;
+}
+
+.p-orange-dark {
+    background-color: var(--p-orange-dark);
+}
+
+.p-purple {
+    /* background-color: var(--p-purple); */
+    /* background-color: #e3ebc6; */
+    background-color: #9656a1;
+}
+
+.p-purple-dark {
+    background-color: var(--p-purple-dark);
+    
+}
+
+.p-pink {
+    /* background-color: var(--p-pink); */
+    /* background-color: #f582ae; */
+    background-color: #eebbc3;
+}
+
+.p-pink-dark {
+    background-color: var(--p-pink-dark);
+}
+
+.p-yellow {
+    background-color: var(--p-yellow);
+}
+
+.p-yellow-dark {
+    background-color: var(--p-yellow-dark);
+}
+
+@media only screen and (max-width: 1800px) {
+    .panel { height: 8vh; }
+
+    .body { top: 8vh; }
+
+    .post-it { height: 275px; }
+
+    .post-body { width: 225px; }
+
+    .post-animate:hover { padding-left: 275px; }
+}
+
+@keyframes landing {
+    from { 
+        margin-left: -325px;
+    }
+    to { 
+        margin-left: 50px; 
+        visibility: visible;
+    }
+  }

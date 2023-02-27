@@ -1,23 +1,29 @@
 .footer{
     width: 100%;
-    height: 150px;
-    background-color: #334;
+
+    /* background-color: var(--dark-blue); */
+    /* background-color: #f3d2c1; */
+    background-color: #1b2245;
+
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 10px;
 }
 
 .socialMedia svg {
-    color: whitesmoke;
-    margin: 10px;
-    font-size: 30px;
+    /* color: #001858; */
+    color: #fffffe;
+
+    margin: 25px 10px 0;
+    font-size: 32px;
+
     cursor: pointer;
 }
 
 .footer p {
-    color: whitesmoke;
+    /* color: #001858; */
+    color: #fffffe;
 }
 
 .icon:hover {
