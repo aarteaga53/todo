@@ -173,8 +173,8 @@ const Canvas = ({user}) => {
                 <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
               </div>
             </div>) : null}
-            <input className='post-title post-select' id='newTitle' value={newTitle} onChange={handleChange} onClick={() => setIsEditing(true)} />
-            <textarea className='post-body post-select' id='newBody' rows={15} value={newBody} onChange={handleChange} onClick={() => setIsEditing(true)} />
+            <input className='post-title post-select' id='newTitle' autoComplete='off' value={newTitle} onChange={handleChange} onClick={() => setIsEditing(true)} />
+            <textarea className='post-body post-select' id='newBody' autoComplete='off' rows={15} value={newBody} onChange={handleChange} onClick={() => setIsEditing(true)} />
           </div>)}
         </div>
         <Footer />

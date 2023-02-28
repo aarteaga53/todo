@@ -124,12 +124,7 @@
 .create-post {
     position: fixed;
     bottom: 140px;
-    right: 25px;
-}
-
-.trash {
-    height: 400px;
-    width: 400px;
+    right: 50px;
 }
 
 .arrow-icons {
@@ -156,7 +151,5 @@
 @media only screen and (max-width: 1800px) {
     .task-box { width: 90%; }
 
-    .create-post { bottom: 25px; }
-
-    .trash { width: 300px; height: 300px; }
+    .create-post { bottom: 140px; right: 25px }
 }
