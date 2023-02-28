@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { CSS } from '@dnd-kit/utilities'
 import '../styles/Landing.css'
 import { useSortable } from '@dnd-kit/sortable'
-import DeleteIcon from '@mui/icons-material/Delete'
-import DoneIcon from '@mui/icons-material/Done'
-import ClearIcon from '@mui/icons-material/Clear'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import { Clear, Delete, Done, KeyboardArrowLeft, KeyboardArrowRight} from '@mui/icons-material'
 import Icon from '@mui/material/Icon'
 
 const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
@@ -119,13 +115,13 @@ const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
         {isEditing ? 
         (<div>
           <div className='arrow-icons'>
-            <Icon className='post-icon' onClick={() => changeColor(0)}><KeyboardArrowLeftIcon /></Icon>
-            <Icon className='post-icon' onClick={() => changeColor(1)}><KeyboardArrowRightIcon /></Icon>
+            <Icon className='post-icon' onClick={() => changeColor(0)}><KeyboardArrowLeft /></Icon>
+            <Icon className='post-icon' onClick={() => changeColor(1)}><KeyboardArrowRight /></Icon>
           </div>
           <div className='edit-icons'>
-            <Icon className='post-icon' onClick={deletePost}><DeleteIcon /></Icon>
-            <Icon className='post-icon' onClick={clear}><ClearIcon /></Icon>
-            <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
+            <Icon className='post-icon' onClick={deletePost}><Delete /></Icon>
+            <Icon className='post-icon' onClick={clear}><Clear /></Icon>
+            <Icon className='post-icon' onClick={done}><Done /></Icon>
           </div>
         </div>) : null}
         <input className='post-title post-select' id='title' value={title} onChange={handleChange} onClick={() => setIsEditing(true)} />

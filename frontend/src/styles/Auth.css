@@ -42,5 +42,5 @@
 }
 
 @media only screen and (max-width: 1800px) {
-    .auth-body { height: calc(92vh - 44px); }
+    .auth-body { height: calc(92vh - 41px); }
 }

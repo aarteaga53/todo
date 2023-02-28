@@ -79,7 +79,7 @@
 }
 
 .create-box {
-    border-radius: 4px;
+    border-radius: 16px;
     background-color: white;
     padding: 50px;
     display: flex;
@@ -109,43 +109,6 @@
 .delete-icon {
     color: var(--black);
     z-index: 0;
-}
-
-.canvas {
-    width: 100%;
-    padding: 50px;
-    background-color: var(--blue);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    align-content: flex-start;
-}
-
-.create-post {
-    position: fixed;
-    bottom: 140px;
-    right: 50px;
-}
-
-.arrow-icons {
-    position: absolute;
-    left: 10px;
-}
-
-.edit-icons {
-    position: absolute;
-    right: 10px;
-}
-
-.post-icon {
-    border-radius: 20px;
-    padding: 3px;
-    transition-duration: 0.3s;
-}
-
-.post-icon:hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.2);
 }
 
 @media only screen and (max-width: 1800px) {
