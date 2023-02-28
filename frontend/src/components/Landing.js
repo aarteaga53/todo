@@ -39,7 +39,7 @@ const Landing = () => {
       </div>
       <div className='body'>
         {postIts.map((postIt, index) => (
-          <div className={`post-it ${postIt.color} post-animate`} style={{marginTop: index * (window.innerWidth > 1800 ? 125 : 50) + 50}} key={index}>
+          <div className={`post-it ${postIt.color} post-animate`} key={index}>
             {/* <div className={`corner ${postIt.color}-dark`}></div> */}
             <input className='post-title post-select' defaultValue={postIt.title} />
             <textarea className='post-body post-select' rows={15} defaultValue={postIt.body} />

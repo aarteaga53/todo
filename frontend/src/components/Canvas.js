@@ -77,37 +77,39 @@ const Canvas = ({user}) => {
   }
 
   let done = async () => {
-    const newTask = {
-      title: newTitle,
-      body: newBody,
-      type: 0,
-      color: colors[colorIndex],
-      date: new Date()
-    }
-
-    let response = await fetch(`http://127.0.0.1:8000/tasks/insert`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ user: user, task: newTask })
-    })
-
-    let data = await response.json()
-
-    if('insertedId' in data) {
-      newTask._id = data.insertedId
-      
-      if('tasks' in user) {
-        user.tasks.push(data.insertedId)
-      } else {
-        user.tasks = [data.insertedId]
+    if(newTitle !== '' && newBody !== '') {
+      const newTask = {
+        title: newTitle,
+        body: newBody,
+        type: 0,
+        color: colors[colorIndex],
+        date: new Date()
       }
-
-      setTasks(tasks => [...tasks, newTask])
+  
+      let response = await fetch(`http://127.0.0.1:8000/tasks/insert`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ user: user, task: newTask })
+      })
+  
+      let data = await response.json()
+  
+      if('insertedId' in data) {
+        newTask._id = data.insertedId
+        
+        if('tasks' in user) {
+          user.tasks.push(data.insertedId)
+        } else {
+          user.tasks = [data.insertedId]
+        }
+  
+        setTasks(tasks => [...tasks, newTask])
+      }
+  
+      clear()
     }
-
-    clear()
   }
 
   let clear = () => {
@@ -167,8 +169,8 @@ const Canvas = ({user}) => {
                 <Icon className='post-icon' onClick={() => changeColor(1)}><KeyboardArrowRightIcon /></Icon>
               </div>
               <div className='edit-icons'>
-                <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
                 <Icon className='post-icon' onClick={clear}><ClearIcon /></Icon>
+                <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
               </div>
             </div>) : null}
             <input className='post-title post-select' id='newTitle' value={newTitle} onChange={handleChange} onClick={() => setIsEditing(true)} />

@@ -87,7 +87,7 @@ const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
       date: new Date(postIt.date)
     }
 
-    let result = await fetch(`http://127.0.0.1:8000/tasks/update`, {
+    let response = await fetch(`http://127.0.0.1:8000/tasks/update`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -95,7 +95,7 @@ const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
       body: JSON.stringify({ task: newTask })
     })
 
-    let data = await result.json()
+    let data = await response.json()
 
     if(data.msg === 'success') {
       postIt.title = title
@@ -124,8 +124,8 @@ const PostIt = ({user, postIt, setTasks, id, index, colors}) => {
           </div>
           <div className='edit-icons'>
             <Icon className='post-icon' onClick={deletePost}><DeleteIcon /></Icon>
-            <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
             <Icon className='post-icon' onClick={clear}><ClearIcon /></Icon>
+            <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
           </div>
         </div>) : null}
         <input className='post-title post-select' id='title' value={title} onChange={handleChange} onClick={() => setIsEditing(true)} />
