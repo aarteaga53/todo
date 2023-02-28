@@ -114,5 +114,7 @@
 @media only screen and (max-width: 1800px) {
     .task-box { width: 90%; }
 
+    .task { padding: 15px; }
+
     .create-post { bottom: 140px; right: 25px }
 }

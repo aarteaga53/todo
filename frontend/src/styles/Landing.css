@@ -48,7 +48,7 @@
 
 .post-animate:hover {
     /* border-bottom-left-radius: 64px; */
-    padding-left: calc(10vw + 75px);
+    padding-left: calc(10vw + 100px);
     /* box-shadow: inset 0 0 0 15px #FF7A59; */
 }
 
@@ -214,15 +214,30 @@
 
     .post-body { width: 12.5vw; }
 
-    .post-animate { margin-top: 3vh; }
+    .post-animate { 
+        margin-top: 3vh;
+        animation-name: landing-small;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+     }
 
-    .post-animate:hover { padding-left: calc(12.5vw + 75px); }
+    .post-animate:hover { padding-left: calc(12.5vw + 65px); }
 
     .post-animate:nth-child(2) { margin-top: 11vh; }
     .post-animate:nth-child(3) { margin-top: 19vh; }
     .post-animate:nth-child(4) { margin-top: 27vh; }
     .post-animate:nth-child(5) { margin-top: 35vh; }
     .post-animate:nth-child(6) { margin-top: 43vh; }
+
+    @keyframes landing {
+        from { 
+            margin-left: -325px;
+        }
+        to { 
+            margin-left: 25px; 
+            visibility: visible;
+        }
+    }
 }
 
 @keyframes landing {
@@ -233,4 +248,14 @@
         margin-left: 50px; 
         visibility: visible;
     }
-  }
+}
+
+@keyframes landing-small {
+    from { 
+        margin-left: -325px;
+    }
+    to { 
+        margin-left: 25px; 
+        visibility: visible;
+    }
+}
