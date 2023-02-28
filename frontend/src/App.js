@@ -7,6 +7,7 @@ import Profile from './components/Profile';
 import Landing from './components/Landing';
 import Canvas from './components/Canvas';
 import Home from './components/Home';
+import Issues from './components/Issues';
 
 function App() {
   let [token, setToken] = useState(null)
@@ -54,6 +55,7 @@ function App() {
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
           <Route path='home/*' element={<Home user={user} />}></Route>
           <Route path='canvas/*' element={<Canvas user={user} />}></Route>
+          <Route path='issues/*' element={<Issues user={user} />}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
           <Route path='contact'></Route>
         </Routes>

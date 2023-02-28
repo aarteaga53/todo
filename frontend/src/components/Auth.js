@@ -98,7 +98,7 @@ const Auth = ({setToken, setUser}) => {
                         <TextField id='first' name='first' label='First Name' type='text' margin='normal' required />
                         <TextField id='last' name='last' label='Last Name' type='text' margin='normal' required />
                     </>) : null}
-                    <TextField id='email' name='email' label='Email' type='text' margin='normal' required />
+                    <TextField id='email' name='email' label='Email' type='email' margin='normal' required />
                     <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
                 </div>
                 <div className='auth-buttons'>

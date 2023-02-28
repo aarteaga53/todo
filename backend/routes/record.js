@@ -63,6 +63,7 @@ recordRoutes.route('/tasks/insert').post(async (req, res) => {
     title: req.body.task.title,
     body: req.body.task.body,
     type: parseInt(req.body.task.type),
+    color: req.body.task.color,
     date: new Date(req.body.task.date)
   }
 
@@ -122,14 +123,15 @@ recordRoutes.route('/tasks/update').post(async (req, res) => {
   const dbConnect = dbo.getDb()
   const collection = dbConnect.collection('tasks')
   const updateTask = {
-    title: req.body.title,
-    body: req.body.body,
-    type: parseInt(req.body.type),
-    date: new Date(req.body.date)
+    title: req.body.task.title,
+    body: req.body.task.body,
+    type: parseInt(req.body.task.type),
+    color: req.body.task.color,
+    date: new Date(req.body.task.date)
   }
   
   try {
-    const taskId = { _id: new ObjectId(req.body._id) }
+    const taskId = { _id: new ObjectId(req.body.task._id) }
     const result = await collection.updateOne(taskId, { $set: updateTask })
   
     if(result.matchedCount !== 0) {

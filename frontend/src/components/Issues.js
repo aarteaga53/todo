@@ -105,7 +105,7 @@ const Issues = ({user}) => {
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify({ task: task })
     })
 
     switch(type) {
