@@ -7,14 +7,15 @@
 }
 
 .tri:nth-child(2) {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-left: 2px solid #171d3e;
+    border-right: 2px solid #171d3e;
 }
 
 .type-title {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 25px;
+    color: whitesmoke;
 }
 
 .task-box {
@@ -27,7 +28,7 @@
 }
 
 .task-drag {
-    border-radius: 4px;
+    border-radius: 8px;
     margin-bottom: 10px;
 }
 
@@ -41,10 +42,11 @@
 
 .task {
     border-radius: 4px;
-    background-color: white;
+    background-color: #232946;
     padding: 25px;
     margin-bottom: 10px;
     text-align: start;
+    color: var(--purple);
 }
 
 .task:last-of-type {
@@ -52,7 +54,7 @@
 }
 
 .task-header {
-    border-bottom: 2px solid var(--black);
+    border-bottom: 2px solid #171d3e;
     padding-bottom: 5px;
     margin-bottom: 15px;
     display: flex;
@@ -80,7 +82,7 @@
 
 .create-box {
     border-radius: 16px;
-    background-color: white;
+    background-color: #b8c1ec;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -107,14 +109,15 @@
 }
 
 .delete-icon {
-    color: var(--black);
+    color: var(--purple);
     z-index: 0;
 }
 
 @media only screen and (max-width: 1800px) {
+    .type-title { font-size: 28px; }
+
     .task-box { width: 90%; }
 
     .task { padding: 15px; }
 
-    .create-post { bottom: 140px; right: 25px }
 }
