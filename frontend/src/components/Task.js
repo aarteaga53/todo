@@ -15,7 +15,7 @@ const Task = ({user, index, setTasks, task}) => {
 
   const style = {
     transform: CSS.Translate.toString(transform),
-    border: isDragging ? '2px solid black' : null
+    boxShadow: isDragging ? '0px 3px 10px 0px rgba(0,0,0,0.8)' : null
   }
 
   let deleteTask = async () => {
