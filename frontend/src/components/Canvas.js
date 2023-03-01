@@ -102,7 +102,7 @@ const Canvas = ({user}) => {
           user.tasks = [data.insertedId]
         }
   
-        setTasks(tasks => [...tasks, newTask])
+        setTasks(tasks => [newTask, ...tasks])
       }
   
       clear()
