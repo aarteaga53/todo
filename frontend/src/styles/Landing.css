@@ -219,13 +219,13 @@
 .p-yellow {
     /* background-color: var(--p-yellow); */
     /* background-color: #fde992; */
-    background-color: #E0D268;
+    background-color: #f9f091;
 }
 
 .p-yellow-dark {
     /* background-color: var(--p-yellow-dark); */
     /* background-color: #fce16b; */
-    background-color: #daca4d;
+    background-color: #f7eb6c;
 }
 
 @media only screen and (max-width: 1800px) {

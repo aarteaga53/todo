@@ -145,6 +145,30 @@ recordRoutes.route('/tasks/update').post(async (req, res) => {
   }
 })
 
+// update multiple tasks with their new index
+recordRoutes.route('/tasks/updateMany').post(async (req, res) => {
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('tasks')
+  const tasks = req.body.tasks
+  const write = tasks.map((task) => {
+    return { 
+      updateOne: { 
+        'filter': { _id: new ObjectId(task._id) }, 
+        'update': { $set: { index: task.index } }
+      }
+    }
+  })
+
+  try {
+    const result = await collection.bulkWrite(write)
+    console.log(result)
+    res.json({ msg: 'success' })
+  } catch(err) {
+    console.log(err)
+    res.json({ msg: 'error' })
+  }
+})
+
 // verify user exists
 recordRoutes.route('/verify').post(async (req, res) => {
   const dbConnect = dbo.getDb()

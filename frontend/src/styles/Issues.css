@@ -46,7 +46,7 @@
     padding: 25px;
     margin-bottom: 10px;
     text-align: start;
-    color: var(--purple);
+    color: whitesmoke;
 }
 
 .task:last-of-type {
@@ -109,7 +109,7 @@
 }
 
 .delete-icon {
-    color: var(--purple);
+    color: whitesmoke;
     z-index: 0;
 }
 

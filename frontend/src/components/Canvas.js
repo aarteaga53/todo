@@ -39,7 +39,7 @@ const Canvas = ({user}) => {
         })
         let data = await response.json()
         
-        setTasks(data.sort((a, b) => { return a.type - b.type } ))
+        setTasks(data.sort((a, b) => { return a.index - b.index } ))
       }
     }
 
@@ -57,12 +57,30 @@ const Canvas = ({user}) => {
       setTasks((tasks) => {
         const oldIndex = tasks.indexOf(active.id)
         const newIndex = tasks.indexOf(over.id)
+        const data = arrayMove(tasks, oldIndex, newIndex)
 
-        return arrayMove(tasks, oldIndex, newIndex)
+        updateTasks(data)
+
+        return data
       })
     }
 
     setIsDragging(false)
+  }
+
+  let updateTasks = async (newTasks) => {
+    newTasks.forEach((datum, index) => {
+      datum.index = index
+      return datum
+    })
+
+    await fetch(`http://127.0.0.1:8000/tasks/updateMany`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({ tasks: newTasks })
+    })
   }
 
   let changeColor = (direction) => {
@@ -80,6 +98,7 @@ const Canvas = ({user}) => {
         body: newBody,
         type: 0,
         color: colors[colorIndex],
+        index: tasks.length,
         date: new Date()
       }
   
@@ -102,7 +121,7 @@ const Canvas = ({user}) => {
           user.tasks = [data.insertedId]
         }
   
-        setTasks(tasks => [newTask, ...tasks])
+        setTasks(tasks => [...tasks, newTask])
       }
   
       clear()
