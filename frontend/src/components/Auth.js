@@ -102,9 +102,9 @@ const Auth = ({setToken, setUser}) => {
                     <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
                 </div>
                 <div className='auth-buttons'>
-                    <Button variant='outlined' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
-                    <Button variant='outlined' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
-                    {!isSignup ? (<Button variant='outlined' type='submit' onClick={skip}>Skip</Button>) : null}
+                    <Button variant='contained' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
+                    <Button variant='contained' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
+                    {!isSignup ? (<Button variant='contained' type='submit' onClick={skip}>Skip</Button>) : null}
                 </div>
             </form>
         </div>

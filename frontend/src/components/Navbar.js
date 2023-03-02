@@ -21,9 +21,11 @@ function Navbar() {
 
   const toggleTheme = () => {
     if(theme === 'light-theme'){
+      window.localStorage.setItem('theme', 'dark-theme');
       document.body.className = 'dark-theme'
       setTheme('dark-theme');
     }else{
+      window.localStorage.setItem('theme', 'light-theme');
       document.body.className = 'light-theme'
       setTheme('light-theme');
     }

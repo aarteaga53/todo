@@ -40,12 +40,18 @@ function App() {
     }
 
     let getTheme = () => {
-      const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)")
+      const data = window.localStorage.getItem('theme')
 
-      if (darkThemeMq.matches) {
-        document.body.className = 'dark-theme'
+      if(data.includes('theme')) {
+        document.body.className = data
       } else {
-        document.body.className = 'light-theme'
+        const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)")
+  
+        if (darkThemeMq.matches) {
+          document.body.className = 'dark-theme'
+        } else {
+          document.body.className = 'light-theme'
+        }
       }
     }
 

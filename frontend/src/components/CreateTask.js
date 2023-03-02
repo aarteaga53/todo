@@ -72,8 +72,8 @@ const CreateTask = ({user, set0, set1, set2}) => {
           </RadioGroup>
         </FormControl>
         <div className='create-buttons'>
-          <Button variant='outlined' onClick={() => navigate(-1)}>Back</Button>
-          <Button variant='outlined' type='submit'>Add</Button>
+          <Button variant='contained' onClick={() => navigate(-1)}>Back</Button>
+          <Button variant='contained' type='submit'>Add</Button>
         </div>
       </form>
     </div>
