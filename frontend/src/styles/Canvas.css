@@ -1,9 +1,6 @@
 .canvas {
     width: 100%;
     padding: 50px;
-    /* background-color: var(--blue); */
-    /* background-color: #fef6e4; */
-    background-color: #232946;
     display: flex;
     flex-wrap: wrap;
     gap: 25px;

@@ -1,10 +1,6 @@
 .footer{
     width: 100%;
-
-    /* background-color: var(--dark-blue); */
-    /* background-color: #f3d2c1; */
-    background-color: #1b2245;
-
+    background-color: var(--fg-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +8,7 @@
 }
 
 .socialMedia svg {
-    /* color: #001858; */
-    color: #fffffe;
+    color: var(--font);
 
     margin: 25px 10px 0;
     font-size: 32px;
@@ -22,8 +17,7 @@
 }
 
 .footer p {
-    /* color: #001858; */
-    color: #fffffe;
+    color: var(--font);
 }
 
 .icon:hover {

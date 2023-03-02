@@ -4,7 +4,7 @@ import '../styles/Navbar.css'
 import ReorderIcon from '@mui/icons-material/Reorder';
 import { Button } from '@mui/material';
 import '../styles/DarkMode.css'
-// import {Switch} from '@mui/material';
+import {Switch} from '@mui/material';
 
 
 
@@ -17,15 +17,17 @@ function Navbar() {
       setOpenLinks(!openLinks)
   };
 
-  // const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  let [theme, setTheme] = useState(document.body.className);
 
-  // const toggleTheme = () => {
-  //   if(theme === 'light'){
-  //     setTheme('dark');
-  //   }else{
-  //     setTheme('light');
-  //   }
-  // };
+  const toggleTheme = () => {
+    if(theme === 'light-theme'){
+      document.body.className = 'dark-theme'
+      setTheme('dark-theme');
+    }else{
+      document.body.className = 'light-theme'
+      setTheme('light-theme');
+    }
+  };
 
   // useEffect(() => {
   //   localStorage.setItem('theme', theme);
@@ -36,10 +38,10 @@ function Navbar() {
     <div className={'navbar ${theme'}>
       <div className='leftSide' id={openLinks ? 'open' : 'close'}>
       
-      {/* <Switch
-        checked={theme}
-        onChange={() => {toggleTheme(!theme);}}
-      /> */}
+      <Switch
+        checked={theme === 'dark-theme'}
+        onChange={() => {toggleTheme();}}
+      />
         <div className='hiddenLinks'>
           <Link to='home' style={{color:"#001858"}}>Home</Link>
           <Link to='canvas'>Canvas</Link>

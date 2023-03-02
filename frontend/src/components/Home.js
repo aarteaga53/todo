@@ -8,7 +8,7 @@ const Home = ({user}) => {
       <>
         <div className='home'>
           <div className='leftSide'>
-            <h1>Welcome back {`${user.first} ${user.last}`}</h1>
+            {user ? (<h1>Welcome back {`${user.first} ${user.last}`}</h1>) : (<h1>Welcome back</h1>)}
             <p>Track issues faster than ever before!</p>
             <Link to="/Canvas"><button>
               Start Now 

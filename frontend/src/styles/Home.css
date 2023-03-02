@@ -3,7 +3,7 @@
     padding: 50px;
     /* background-color: var(--blue); */
     /* background-color: #fef6e4; */
-    background-color: #232946;
+    background-color: var(--bg-color);
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
@@ -22,14 +22,14 @@
     font-weight: 10;
     font-size: 50px;
     margin-left: 30px;
-    color: #fffffe;
+    color: var(--font);
     text-align: left;
 }
 .home .leftSide p{
     padding: 0;
     font-size: 30px;
     font-weight: lighter;
-    color: #fffffe;
+    color: var(--font);
 }
 .home .leftSide button{
     color: #fffffe;
@@ -37,7 +37,7 @@
     border-radius: 5px;
     cursor: pointer;
     justify-content: center;
-    background-color: #b8c1ec;
+    background-color: var(--box-color);
     height: 50px;
     width: 180px;
     text-decoration: none;
