@@ -7,7 +7,7 @@ const Profile = ({user}) => {
     <>
       <div className='page-body'>
         <div className='layout'>
-          <div className='section-title'>Hello again {`${user.first} ${user.last}`}</div>
+          {user ? (<div className='section-title'>Hello again {`${user.first} ${user.last}`}</div>) : (<div className='section-title'>Hello again</div>)}
         </div>
         <Footer />
       </div>

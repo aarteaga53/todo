@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDroppable} from '@dnd-kit/core'
 import Task from './Task'
 
 const TaskBox = ({user, title, tasks, setTasks, id}) => {
+  let [backgroundColor, setBackgroundColor] = useState('#efcfd4')
   const {isOver, setNodeRef} = useDroppable({
     id: id,
   })
 
   const style = {
-    backgroundColor: isOver ? '#a199ed' : '#4e59d0'
+    backgroundColor: isOver ? '#a199ed' : backgroundColor
   }
+
+  useEffect(() => {
+    if(document.body.className === 'dark-theme') {
+      setBackgroundColor('#4e59d0')
+    }
+  }, [])
 
   return (
     <div className='tri'>

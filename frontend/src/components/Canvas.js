@@ -5,7 +5,10 @@ import PostIt from './PostIt'
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { arrayMove, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
-import { Clear, Done, KeyboardArrowLeft, KeyboardArrowRight} from '@mui/icons-material'
+import ClearIcon from '@mui/icons-material/Clear'
+import DoneIcon from '@mui/icons-material/Done'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Icon from '@mui/material/Icon'
 
 const Canvas = ({user}) => {
@@ -181,12 +184,12 @@ const Canvas = ({user}) => {
             {isEditing ? 
             (<div>
               <div className='arrow-icons'>
-                <Icon className='post-icon' onClick={() => changeColor(0)}><KeyboardArrowLeft /></Icon>
-                <Icon className='post-icon' onClick={() => changeColor(1)}><KeyboardArrowRight /></Icon>
+                <Icon className='post-icon' onClick={() => changeColor(0)}><KeyboardArrowLeftIcon /></Icon>
+                <Icon className='post-icon' onClick={() => changeColor(1)}><KeyboardArrowRightIcon /></Icon>
               </div>
               <div className='edit-icons'>
-                <Icon className='post-icon' onClick={clear}><Clear /></Icon>
-                <Icon className='post-icon' onClick={done}><Done /></Icon>
+                <Icon className='post-icon' onClick={clear}><ClearIcon /></Icon>
+                <Icon className='post-icon' onClick={done}><DoneIcon /></Icon>
               </div>
             </div>) : null}
             <input className='post-title post-select' id='newTitle' autoComplete='off' value={newTitle} onChange={handleChange} onClick={() => setIsEditing(true)} />
