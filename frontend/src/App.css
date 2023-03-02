@@ -31,12 +31,12 @@
   --p-green-dark: #d3e0a6;
   --p-blue: #8bd3dd;
   --p-blue-dark: #6fc8d5;
-  --p-orange: #f1ad8a;
-  --p-orange-dark: #ed9568;
+  --p-orange: #ffc0ad;
+  --p-orange-dark: #ff9f82;
   --p-purple: #C5A9C7;
   --p-purple-dark: #b693b8;
-  --p-pink: #f582ae;
-  --p-pink-dark: #f25f97;
+  --p-pink: #eebbc3;
+  --p-pink-dark: #e699a5;
   --p-yellow: #fde992;
   --p-yellow-dark: #fce16b;
 }
@@ -48,14 +48,14 @@
   --font: #fffffe;
   --p-green: #c3f0ca;
   --p-green-dark: #a0e7ab;
-  --p-blue: #79d9e6;
-  --p-blue-dark: #5bd1e0;
-  --p-orange: #ffc0ad;
-  --p-orange-dark: #ff9f82;
+  --p-blue: #4fc2d2;
+  --p-blue-dark: #38bacc;
+  --p-orange: #f1ad8a;
+  --p-orange-dark: #ed9568;
   --p-purple: #9656a1;
   --p-purple-dark: #874d91;
-  --p-pink: #eebbc3;
-  --p-pink-dark: #e699a5;
+  --p-pink: #f582ae;
+  --p-pink-dark: #f25f97;
   --p-yellow: #f9f091;
   --p-yellow-dark: #f7eb6c;
 }
