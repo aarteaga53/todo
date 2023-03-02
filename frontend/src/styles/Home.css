@@ -43,5 +43,5 @@
 }
 
 @media only screen and (max-width: 1800px) {
-    .home { min-height: calc(77vh - 3px);}
+    .home { min-height: calc(77vh - 12px);}
 }
