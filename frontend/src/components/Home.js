@@ -14,13 +14,10 @@ const Home = ({user}) => {
               Start Now 
             </button>
             </Link>
-            
-            
-            {/* <div className='section-title'>Hello  World{`${user.first} ${user.last}`}</div> */}
           </div>
           <div className='rightSide'></div>
-          <Footer />
         </div>
+        <Footer />
       </>
     )
   }

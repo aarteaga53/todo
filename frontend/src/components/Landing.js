@@ -34,7 +34,7 @@ const Landing = () => {
   return (
     <div>
       <div className='panel'>
-        <div className='app-name'>Issue Tracker</div>
+        <div className='app-name'>Task Tracker</div>
         {/* <button className='auth' type='button'>Sign In</button> */}
       </div>
       <div className='body'>

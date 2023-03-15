@@ -1,8 +1,6 @@
 .home{
-    width: 100%;
     padding: 50px;
-    /* background-color: var(--blue); */
-    /* background-color: #fef6e4; */
+    min-height: calc(84vh - 3px);
     background-color: var(--bg-color);
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +40,8 @@
     width: 180px;
     text-decoration: none;
     font-size: 20px;
+}
+
+@media only screen and (max-width: 1800px) {
+    .home { min-height: calc(77vh - 12px);}
 }

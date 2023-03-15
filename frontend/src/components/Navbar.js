@@ -21,9 +21,11 @@ function Navbar() {
 
   const toggleTheme = () => {
     if(theme === 'light-theme'){
+      window.localStorage.setItem('theme', 'dark-theme');
       document.body.className = 'dark-theme'
       setTheme('dark-theme');
     }else{
+      window.localStorage.setItem('theme', 'light-theme');
       document.body.className = 'light-theme'
       setTheme('light-theme');
     }
@@ -45,7 +47,7 @@ function Navbar() {
         <div className='hiddenLinks'>
           <Link to='home' style={{color:"#001858"}}>Home</Link>
           <Link to='canvas'>Canvas</Link>
-          <Link to='issues'>Issues</Link>
+          <Link to='tasks'>Tasks</Link>
           <Link to='profile'>Profile</Link>
           <Link to=''>Logout</Link>
           
@@ -54,7 +56,7 @@ function Navbar() {
       <div className='rightSide'>
         <Link to='home'>Home</Link>
         <Link to='canvas'>Canvas</Link>
-        <Link to='issues'>Issues</Link>
+        <Link to='tasks'>Tasks</Link>
         <Link to='profile'>Profile</Link>
         <Link to=''>Logout</Link>
         <Button onClick={toggleNavbar}>

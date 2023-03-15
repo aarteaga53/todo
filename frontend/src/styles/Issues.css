@@ -43,7 +43,6 @@
 .task {
     border-radius: 4px;
     background-color: var(--bg-color);
-
     padding: 25px;
     margin-bottom: 10px;
     text-align: start;
@@ -118,6 +117,8 @@
     .type-title { font-size: 28px; }
 
     .task-box { width: 90%; }
+
+    .task-drag { margin-bottom: 5px; }
 
     .task { padding: 15px; }
 
