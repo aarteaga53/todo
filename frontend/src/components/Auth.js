@@ -76,11 +76,6 @@ const Auth = ({setToken, setUser}) => {
         navigate('/home')
     }
 
-    let skip = () => {
-        document.getElementById('email').value = 'user@email.com'
-        document.getElementById('password').value = 'password123'
-    }
-
     /**
      * changes between signin and signup inputs
      */
@@ -102,9 +97,8 @@ const Auth = ({setToken, setUser}) => {
                     <TextField id='password' name='password' label='Password' type='password' margin='normal' required />
                 </div>
                 <div className='auth-buttons'>
-                    <Button variant='contained' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
-                    <Button variant='contained' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
-                    {!isSignup ? (<Button variant='contained' type='submit' onClick={skip}>Skip</Button>) : null}
+                    <Button variant='outlined' type='button' onClick={toggleAuth}>{isSignup ? 'Sign In' : 'Sign Up'}</Button>
+                    <Button variant='outlined' type='submit' >{isSignup ? 'Sign Up' : 'Sign In'}</Button>
                 </div>
             </form>
         </div>

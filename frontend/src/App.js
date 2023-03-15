@@ -68,7 +68,7 @@ function App() {
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
           <Route path='home/*' element={<Home user={user} />}></Route>
           <Route path='canvas/*' element={<Canvas user={user} />}></Route>
-          <Route path='issues/*' element={<Issues user={user} />}></Route>
+          <Route path='tasks/*' element={<Issues user={user} />}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
           <Route path='contact'></Route>
         </Routes>
