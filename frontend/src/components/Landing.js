@@ -2,8 +2,6 @@ import React from 'react'
 import '../styles/Landing.css'
 
 const Landing = () => {
-  // left: Math.floor(Math.random() * (window.innerWidth - 275)), 
-  // top: Math.floor(Math.random() * (window.innerHeight - 555))
   const postIts = [
     {
       color: 'p-green', title: 'Create', 
@@ -19,7 +17,7 @@ const Landing = () => {
     },
     {
       color: 'p-purple', title: 'Customize', 
-      body: 'Move and place your tasks anywhere around your screen.'
+      body: 'Sort out your tasks in order of importance.'
     },
     {
       color: 'p-pink', title: 'Access', 
@@ -35,12 +33,10 @@ const Landing = () => {
     <div>
       <div className='panel'>
         <div className='app-name'>Task Tracker</div>
-        {/* <button className='auth' type='button'>Sign In</button> */}
       </div>
       <div className='body'>
         {postIts.map((postIt, index) => (
           <div className={`post-it ${postIt.color} post-animate`} key={index}>
-            {/* <div className={`corner ${postIt.color}-dark`}></div> */}
             <input className='post-title post-select' defaultValue={postIt.title} />
             <textarea className='post-body post-select' rows={15} defaultValue={postIt.body} />
           </div>

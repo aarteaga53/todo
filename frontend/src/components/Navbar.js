@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 import ReorderIcon from '@mui/icons-material/Reorder';
 import { Button } from '@mui/material';
-import '../styles/DarkMode.css'
 import {Switch} from '@mui/material';
 
 
@@ -45,19 +44,15 @@ function Navbar() {
         onChange={() => {toggleTheme();}}
       />
         <div className='hiddenLinks'>
-          <Link to='home' style={{color:"#001858"}}>Home</Link>
           <Link to='canvas'>Canvas</Link>
           <Link to='tasks'>Tasks</Link>
-          <Link to='profile'>Profile</Link>
           <Link to=''>Logout</Link>
           
         </div>
       </div>
       <div className='rightSide'>
-        <Link to='home'>Home</Link>
         <Link to='canvas'>Canvas</Link>
         <Link to='tasks'>Tasks</Link>
-        <Link to='profile'>Profile</Link>
         <Link to=''>Logout</Link>
         <Button onClick={toggleNavbar}>
             <ReorderIcon/>

@@ -78,7 +78,7 @@ const Auth = ({setToken, setUser}) => {
     let navigateHome = (data) => {
       window.localStorage.setItem('token', JSON.stringify(data))
       setToken(data)
-      navigate('/home')
+      navigate('/canvas')
     }
 
     /**

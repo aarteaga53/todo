@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Auth from './components/Auth';
 import Navbar from './components/Navbar';
-import Profile from './components/Profile';
 import Landing from './components/Landing';
 import Canvas from './components/Canvas';
-import Home from './components/Home';
 import Issues from './components/Issues';
 
 function App() {
@@ -66,10 +64,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Navigate to='/auth'></Navigate>}></Route>
           <Route path='auth' element={<Auth setToken={setToken} setUser={setUser} />}></Route>
-          <Route path='home/*' element={<Home user={user} />}></Route>
           <Route path='canvas/*' element={<Canvas user={user} />}></Route>
           <Route path='tasks/*' element={<Issues user={user} />}></Route>
-          <Route path='profile' element={<Profile user={user} />}></Route>
           <Route path='contact'></Route>
         </Routes>
       </Router>
